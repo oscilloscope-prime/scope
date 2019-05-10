@@ -87,8 +87,8 @@ always_comb begin
   end else begin
     a1 = a_input;
     a2 = a_display;
-    din2 =  dout1;
-    dout_display =din_input;
+    din1 =  din_input;
+    dout_display =dout2;
     we1 = we_input;
     we2 =  1'b0;
   end
