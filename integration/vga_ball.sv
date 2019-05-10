@@ -50,7 +50,10 @@ module vga_ball(input logic        clk,
 	      logic we2;
 	      logic [15:0] dout2;
 
+		logic [7:0] shape;
+		logic [2:0] a_m;
 
+mouse mouse(.*);
 
 //initializing the buffers
   //buffer 1
@@ -68,6 +71,8 @@ logic [15:0] din_input;
 logic  we_input;
 assign we_input = valid;
 assign din_input = sample;
+assign din1 = din_input;
+assign din2 = din_input;
 
 
 memory m1(clk, a1, din1, we1, dout1),
@@ -76,18 +81,17 @@ memory m1(clk, a1, din1, we1, dout1),
 always_comb begin
 
 
-
   if (first) begin
     a1 = a_display;
     a2 = a_input;
-    din2 = din_input;
+    //din2 = din_input;
     dout_display = dout1;
     we1 = 1'b0;
     we2 = we_input;
   end else begin
     a1 = a_input;
     a2 = a_display;
-    din1 =  din_input;
+    //din1 =  din_input;
     dout_display =dout2;
     we1 = we_input;
     we2 =  1'b0;
@@ -174,7 +178,7 @@ vga_counters counters(.clk50(clk), .*);
 	end   
 	
 
-
+assign a_m  = vcount - posY;
 
    always_comb begin
 	a_display = hcount[10:1];
@@ -183,7 +187,11 @@ vga_counters counters(.clk50(clk), .*);
 	//if( (hcount[10:0]< posX+30) && (hcount[10:0] > posX-30) && (vcount[9:0]>posY-15) && (vcount[9:0] < posY + 15) )
 	//if (((hcount[10:0] - posX)*(hcount[10:0]- posX)) + (4*(vcount[9:0]- posY)*(vcount[9:0]- posY)) < 900)
 	//if ( (vcount[9:0] == posY) &&( (hcount[10:0]< posX+30) && (hcount[10:0] > posX-30) ) )
-	if (dout_display[9:0] == vcount[9:0])
+	if( ((hcount[10:1]< posX+16) && (hcount[10:1] >= posX) && (vcount[9:0]>=posY) && (vcount[9:0] < posY + 8) ) && (shape[hcount[10:1] - posX]))
+		//if (shape[hcount[10:1] - posX])
+		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'hff, 8'hff};
+
+	else if (dout_display[9:0] == vcount[9:0])
 		{VGA_R, VGA_G, VGA_B} = {8'h00, 8'h00, 8'hff};
 
 	else if(vcount[9:0] == 150 )
@@ -288,6 +296,30 @@ module vga_counters(
    assign VGA_CLK = hcount[0]; // 25 MHz clock: rising edge sensitive
    
 endmodule
+
+
+
+
+module mouse(input logic clk, output logic [7:0] shape, input logic [2:0] a_m);
+
+logic [7:0]     mse[7:0];
+
+initial begin
+mse[0] = 1'b11111110;
+mse[1] = 1'b11111100;
+mse[2] = 1'b11111000;
+mse[3] = 1'b11111000;
+mse[4] = 1'b11111100;
+mse[5] = 1'b11001110;
+mse[6] = 1'b10000111;
+mse[7] = 1'b00000011;
+end
+
+always_ff @(posedge clk) begin 
+shape <= mse[a_m];
+end
+endmodule 
+
 
 
 
