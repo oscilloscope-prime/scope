@@ -30,8 +30,11 @@ module scope(	input logic        	clk,
 	// trigger, horizontal_sweep, vertical_sweep
 
 	//instantiate the adc
-	//adc adc0 ();
-	//instantiate the vga
+	adc adc0 (.CLOCK_50(clk), .ADC_CS_N(ADC_CS_N), .ADC_SCLK(ADC_SCLK), .ADC_DIN(ADC_DIN), .ADC_DOUT(ADC_DOUT),
+			.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5));
 
+
+	//instantiate the vga
+	vga_ball vga (.*);
 
 endmodule
