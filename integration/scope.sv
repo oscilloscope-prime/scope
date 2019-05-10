@@ -26,12 +26,21 @@ module scope(	input logic        	clk,
 				output logic [6:0] 	HEX0, HEX1, HEX2, HEX3, HEX4, HEX5
 			);
 
+	logic [11:0] ADC_REG;
+
+	logic [8:0] sample = 9'b 111111111;
+	logic valid = 1'd 1; 
+	logic full;
+	logic [11:0] trig;
+	logic rising; 
+
+
 	//initialize the values that will eventually be communicated through software
 	// trigger, horizontal_sweep, vertical_sweep
 
 	//instantiate the adc
 	adc adc0 (.CLOCK_50(clk), .ADC_CS_N(ADC_CS_N), .ADC_SCLK(ADC_SCLK), .ADC_DIN(ADC_DIN), .ADC_DOUT(ADC_DOUT),
-			.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5));
+			.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .ADC_REG(ADC_REG));
 
 
 	//instantiate the vga
