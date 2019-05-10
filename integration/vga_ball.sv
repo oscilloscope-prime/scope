@@ -59,18 +59,24 @@ module vga_ball(input logic        clk,
 // buffer 2 
    //memory m2( .* );
 
-logic first;
+logic first = 1'b1;
 
 logic [9:0] a_display;
-logic [9:0] a_input;
+logic [9:0] a_input = 10'b0;
 logic [15:0] dout_display;
 logic [15:0] din_input;
-logic[1:0] we_input;
+logic  we_input;
+assign we_input = valid;
+assign din_input = sample;
+
 
 memory m1(clk, a1, din1, we1, dout1),
        m2(clk, a2, din2, we2, dout2);
 
 always_comb begin
+
+
+
   if (first) begin
     a1 = a_display;
     a2 = a_input;
@@ -102,7 +108,29 @@ vga_counters counters(.clk50(clk), .*);
   //buffer 1
 //memory m1(clk,a,din,we,dout);
 //memory m1(.*);
+  always_ff @(posedge clk)
+	begin
+	if (reset)begin 
+	full  <= 1'b1;
+	a_input = 10'b0;
+	first = 1'b1;
+	end
+		if (valid)begin
+			if(full)begin
+			full <= 1'b0;
+			end
+			if(a_input == 10'd639) begin
+				a_input <= 10'b0;
+				full <= 1'b1;
+				first<= ~ first;
+			
+			end
+			else begin
+				a_input <=  a_input + 10'b1;	
+			end	
 
+		end 
+	end
 
 
    always_ff @(posedge clk)
@@ -117,40 +145,36 @@ vga_counters counters(.clk50(clk), .*);
 	flag2 <= 1'd0;
 	dummy <= hcount;
 
-	we_input<=0;
+	//we_input<=0;
 	//posX <= dout_display;
-	first <=0;
+	//first <=0;
 	
      end else if (chipselect && write) begin
-	first <=1;
-	a_input<= a_input + 1'd1;
-	if(a_input == 10'd200)begin
-	a_input<= 1'd0;
-        first<=0;
-        end
+	
        case (address)
 
 
 // this part is irrelevant cause nothing is coming from software?
-	/*
-	 3'h0 : background_r <= writedata;
-	 3'h1 : background_g <= writedata;
-	 3'h2 : background_b <= writedata;
-         3'h3 : posX <= writedata;
-         3'h4 : posY <= writedata;
-	 */
+	
+	 //3'h0 : background_r <= writedata;
+	 //3'h1 : background_g <= writedata;
+	 //3'h2 : background_b <= writedata;
+         3'h0 : posX <= writedata;
+         3'h1 : posY <= writedata;
+	 
 
 		
-	 3'h0 : din_input<= writedata[10:0];
+	 //3'h0 : din_input<= writedata[10:0];
 		
-	 3'h1 : posY <= writedata[10:0];	
+	 //3'h1 : posY <= writedata[10:0];	
 	
 
 
        endcase
-	end
-
+	end   
 	
+
+
 
    always_comb begin
 	a_display = hcount[10:1];
