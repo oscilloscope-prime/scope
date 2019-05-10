@@ -12,12 +12,12 @@ module adc( 	input logic 	CLOCK_50,
 				output logic 		ADC_SCLK,
 				output logic 		ADC_DIN,
 				output logic [6:0] 	HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, 
-
+				output logic [11:0]	ADC_REG,
 				input logic		ADC_DOUT
 
 	     );
 
-	logic [11:0]	ADC_REG;
+	//logic [11:0]	ADC_REG;
 
 	logic    ADC_DoSth;
 	
