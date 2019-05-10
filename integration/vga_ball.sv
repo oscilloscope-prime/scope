@@ -15,7 +15,14 @@ module vga_ball(input logic        clk,
 		output logic [7:0] VGA_R, VGA_G, VGA_B,
 		output logic 	   VGA_CLK, VGA_HS, VGA_VS,
 		                   VGA_BLANK_n,
-		output logic 	   VGA_SYNC_n);
+		output logic 	   VGA_SYNC_n,
+
+		input   logic [8:0] sample,
+		input  logic 	    valid, //ish took out the [1:0], only need 1 bit for this
+		output logic 	    full, //ish took out the [1:0], only need 1 bit for this
+		output logic [11:0] trig,
+		output logic 	    rising //ish took out the [1:0], only need 1 bit for this;
+		);
 
    logic [10:0]	   hcount;
    logic [9:0]     vcount;
