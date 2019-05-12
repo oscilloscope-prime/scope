@@ -5,12 +5,6 @@
 #include <sys/mman.h>
 #include <sys/time.h>
 
-//for mouse
-#include "usbmouse.h"
-#include "read_mouse.h" 
-#include <string.h>
-#include <arpa/inet.h>
-
 //defining colors for tiles
 #define emptycolor 0x00
 #define textcolor 0x80
@@ -19,7 +13,6 @@
 //textcolor is for 1
 
 //tile encodings, font is 8x8, including buttons
-
 
 static unsigned char  A[] = {B00000000,
 	B00011000,
@@ -365,7 +358,7 @@ static unsigned char   dividesign[] = {B00000000,
 	B00100000,
 	B01000000,
 	B00000000};
-static unsigned char   buttonplus[] = {B11111111,
+static unsigned char   button plussign[] = {B11111111,
 	B10000001,
 	B10011001,
 	B10111101,
@@ -756,7 +749,7 @@ void horizontalpositionplus(){
 		}
 		else if (currenthp[1]==two[]){//addition for 2xx
 			if (currenthp[2]==zero[]){currenthp[]={plussign[],two[],one[],zero[]};}
-			else if (currenthp[2]==one[]){currenthp[]={plus[],two[],two[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={ plussign[],two[],two[],zero[]};}
 			else if (currenthp[2]==two[]){currenthp[]={plussign[],two[],three[],zero[]};}
 			else if (currenthp[2]==three[]){currenthp[]={plussign[],two[],four[],zero[]};}
 			else if (currenthp[2]==four[]){currenthp[]={plussign[],two[],five[],zero[]};}
@@ -768,7 +761,7 @@ void horizontalpositionplus(){
 		}
 		else if (currenthp[1]=one[]){//addition for 1xx
 			if (currenthp[2]==zero[]){currenthp[]={plussign[],one[],one[],zero[]};}
-			else if (currenthp[2]==one[]){currenthp[]={plus[],one[],two[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={ plussign[],one[],two[],zero[]};}
 			else if (currenthp[2]==two[]){currenthp[]={plussign[],one[],three[],zero[]};}
 			else if (currenthp[2]==three[]){currenthp[]={plussign[],one[],four[],zero[]};}
 			else if (currenthp[2]==four[]){currenthp[]={plussign[],one[],five[],zero[]};}
@@ -780,7 +773,7 @@ void horizontalpositionplus(){
 		}
 		else{//addition for 0xx
 			if (currenthp[2]==zero[]){currenthp[]={plussign[],zero[],one[],zero[]};}
-			else if (currenthp[2]==one[]){currenthp[]={plus[],zero[],two[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={ plussign[],zero[],two[],zero[]};}
 			else if (currenthp[2]==two[]){currenthp[]={plussign[],zero[],three[],zero[]};}
 			else if (currenthp[2]==three[]){currenthp[]={plussign[],zero[],four[],zero[]};}
 			else if (currenthp[2]==four[]){currenthp[]={plussign[],zero[],five[],zero[]};}
@@ -796,9 +789,132 @@ void horizontalpositionplus(){
 	}
 }
 void horizontalsweepplus(){
-	if (currenths[0] == one[] || (currenths[0] == zero[] && currenths[1] == nine[] && currenths[2] == nine[] && (currenths[3] == one[] || currenths[3] == two[] || currenths[3] ==  three[] || currenths[3] == four[] || currenths[3] ==  five[] || urrenths[3] ==  six[] || currenths[3] == seven[] || currenths[3] == eight[] || currenths[3] == nine[]))){
+	if (currenths[0] == one[]){
 		//default addition by 10
 		currenths[] = currenths[];//prevents addition past 1000
+	}
+	else{
+		if (currenths[1]==nine[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],nine[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],nine[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],nine[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],nine[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],nine[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],nine[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],nine[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],nine[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],nine[],nine[],zero[]};}
+			else{currenths[]={one[],zero[],zero[],zero[]};}
+		}
+		else if (currenths[1]==eight[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],eight[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],eight[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],eight[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],eight[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],eight[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],eight[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],eight[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],eight[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],eight[],nine[],zero[]};}
+			else{currenths[]={zero[],nine[],zero[],zero[]};}
+		}
+		else if (currenths[1]==seven[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],seven[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],seven[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],seven[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],seven[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],seven[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],seven[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],seven[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],seven[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],seven[],nine[],zero[]};}
+			else{currenths[]={zero[],eight[],zero[],zero[]};}
+		}
+		else if (currenths[1]==six[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],six[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],six[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],six[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],six[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],six[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],six[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],six[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],six[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],six[],nine[],zero[]};}
+			else{currenths[]={zero[],seven[],zero[],zero[]};}
+		}
+		else if (currenths[1]==five[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],five[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],five[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],five[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],five[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],five[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],five[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],five[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],five[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],five[],nine[],zero[]};}
+			else{currenths[]={zero[],six[],zero[],zero[]};}
+		}
+		else if (currenths[1]==four[]){//addition for 4xx
+			if (currenths[2]==zero[]){currenths[]={zero[],four[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],four[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],four[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],four[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],four[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],four[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],four[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],four[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],four[],nine[],zero[]};}
+			else{currenths[]={zero[],five[],zero[],zero[]};}
+		}
+		else if (curreths[1]==three[]){ //addition for 3xx
+			if (currenths[2]==zero[]){currenths[]={zero[],three[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],three[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],three[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],three[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],three[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],three[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],three[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],three[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],three[],nine[],zero[]};}
+			else{currenths[]={zero[],four[],zero[],zero[]};}
+		}
+		else if (currenths[1]==two[]){//addition for 2xx
+			if (currenths[2]==zero[]){currenths[]={zero[],two[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],two[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],two[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],two[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],two[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],two[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],two[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],two[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],two[],nine[],zero[]};}
+			else{currenths[]={zero[],three[],zero[],zero[]};}
+		}
+		else if (currenths[1]=one[]){//addition for 1xx
+			if (currenths[2]==zero[]){currenths[]={zero[],one[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],one[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],one[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],one[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],one[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],one[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],one[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],one[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],one[],nine[],zero[]};}
+			else{currenths[]={zero[],two[],zero[],zero[]};}
+		}
+		else{//addition for 0xx
+			if (currenths[2]==zero[]){currenths[]={zero[],zero[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],zero[],two[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],zero[],three[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],zero[],four[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],zero[],five[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],zero[],six[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],zero[],seven[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],zero[],eight[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],zero[],nine[],zero[]};}
+			else{currenths[]={zero[],one[],zero[],zero[]};}
+		}
+		//currenths[] = currenths[];//should not be used ever, but is here as fallback
 	}
 }
 void verticalpositionplus(){
@@ -875,23 +991,14 @@ int main(){
 	int 5ey = 5sy + 8;
 	int 6sy = 5ey + 8;
 	int 6ey = 6sy + 8;
-
-	/* --------get mouse position and button start---- */
-	struct mouse_info mouse0;
-	init_mouse();
-	/* --------get mouse position and button END---- */
-
 	while (1){
-		read_mouse(&mouse0);
-		printf("position of x, y are: %d %d; left click is %d\n",mouse0.x,mouse0.y,mouse0.button);
-
 	bytesmouse = readmouse(); //info sent from rex in a buffer
 	if (bytesmouse > 0){
 	//values from mouse - position
-	int inputx = mouse0.x;
-	int inputy = mouse0.y;
+	int inputx = mouse_data[1];
+	int inputy = mouse_data[2];
 	//value might not be needed if rex sends click info directly instead of having me check
-	int inputclick = mouse0.button; // mouse0.button/click is 0, 1, or 2. left click is 1
+	int inputclick = mouse_data[0];
 	if (inputclick){
 	switch (inputx){
     	case 1sx … 1ex:
