@@ -414,7 +414,7 @@ static unsigned char numberarray[] = {zero[], one[], two[], three[], four[], fiv
 unsigned char currenthp[]{plussign[],zero[],zero[],zero[]}; //default set to +000, range -320 to 320
 unsigned char currenths[]{zero[],five[],zero[],zero[]};//default set to 0500, range 1-1000
 unsigned char currentvp[]{plussign[],zero[],zero[],zero[]};//default set to +000, range -240 to 240
-unsigned char currentvs[]{zero[],zero[],five[]};//default set to 005, range 1-10
+unsigned char currentvs[]{zero[],five[]};//default set to 05, range 1-10
 unsigned char currentts[]{plussign[]};//default to plus sign
 unsigned char currenttv[]{two[],period[],zero[]};//default set to 2.0, range 0.1-3.9
 
@@ -921,7 +921,21 @@ void verticalpositionplus(){
 
 }
 void verticalsweepplus(){
-
+	//range 1-10
+	if (currentvs[0]==zero[]){
+		if (currentvs[1]==one[]){currentvs[]={zero[],two[]};}
+		else if(currentvs[1]==two[]){currentvs[]={zero[],three[]};}
+		else if(currentvs[1]==three[]){currentvs[]={zero[],four[]};}
+		else if(currentvs[1]==four[]){currentvs[]={zero[],five[]};}
+		else if(currentvs[1]==five[]){currentvs[]={zero[],six[]};}
+		else if(currentvs[1]==six[]){currentvs[]={zero[],seven[]};}
+		else if(currentvs[1]==seven[]){currentvs[]={zero[],eight[]};}
+		else if(currentvs[1]==eight[]){currentvs[]={zero[],nine[]};}
+		else {currentvs[]={one[],zero[]};}
+	}
+	else{
+		currentvs[] = currentvs[];
+	}
 }
 void triggerslopeplus(){
 	if (currentts[0]== minussign[]){
@@ -981,21 +995,34 @@ void horiontalsweepminus(){
 
 }
 void verticalpositionminus(){
-	if (currenthp[1] == four[] || currenthp[1] == five[] || currenthp[1] == six[] || currenthp[1] == seven[] || currenthp[1] == eight[] || currenthp[1] == nine[]){
-		currenthp[] = currenthp[]; //prevents out of range calculations
+	if (currentvp[1] == four[] || currentvp[1] == five[] || currentvp[1] == six[] || currentvp[1] == seven[] || currentvp[1] == eight[] || currentvp[1] == nine[]){
+		currentvp[] = currentvp[]; //prevents out of range calculations
 	}
-	else if (currenthp[0]==minussign[] && currenthp[1]==three[] && (currenthp[2] == three[] || currenthp[2] == two[] || currenthp[2] == four[] || currenthp[2] == five[] || currenthp[2] == six[] || currenthp[2] == seven[] || currenthp[2] == eight[] || currenthp[2] == nine[])){
-		currenthp[] = currenthp[];//prevents out of range calculations for negative integers
+	else if (currentvp[0]==minussign[] && currentvp[1]==three[] && (currentvp[2] == three[] || currentvp[2] == two[] || currentvp[2] == four[] || currentvp[2] == five[] || currentvp[2] == six[] || currentvp[2] == seven[] || currentvp[2] == eight[] || currentvp[2] == nine[])){
+		currentvp[] = currentvp[];//prevents out of range calculations for negative integers
 	}
-	else if{
+	else if(){
 	//minus calculation
 	}
 	else{
-		currenthp[] = currenthp[];//should never be reached, is here as fallback, might be deleted completely
+		currentvp[] = currentvp[];//should never be reached, is here as fallback, might be deleted completely
 	}
 }
 void verticalsweepminus(){
-
+	if (currentvs[0]==zero[]){
+		if(currentvs[1]==two[]){currentvs[]={zero[],one[]};}
+		else if(currentvs[1]==one[]){currentvs[]= currentvs[];}
+		else if(currentvs[1]==three[]){currentvs[]={zero[],two[]};}
+		else if(currentvs[1]==four[]){currentvs[]={zero[],three[]};}
+		else if(currentvs[1]==five[]){currentvs[]={zero[],four[]};}
+		else if(currentvs[1]==six[]){currentvs[]={zero[],five[]};}
+		else if(currentvs[1]==seven[]){currentvs[]={zero[],six[]};}
+		else if(currentvs[1]==eight[]){currentvs[]={zero[],seven[]};}
+		else {currentvs[]={zero[],eight[]};}
+	}
+	else{
+		currentvs[] = {zero[],nine[]};
+	}
 }
 void triggerslopeminus(){
 	if (currentts[0] == plussign[]){
