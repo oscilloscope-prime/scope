@@ -412,7 +412,7 @@ static unsigned char numberarray[] = {zero[], one[], two[], three[], four[], fiv
 //need to get these from number array
 
 unsigned char currenthp[]{plussign[],zero[],zero[],zero[]}; //default set to +000, range -320 to 320
-unsigned char currenths[]{zero[],five[],zero[],zero[]};//default set to 0500, range 1-1000
+unsigned char currenths[]{zero[],five[],zero[],zero[]};//default set to 0500, range 10-1000
 unsigned char currentvp[]{plussign[],zero[],zero[],zero[]};//default set to +000, range -240 to 240
 unsigned char currentvs[]{zero[],five[]};//default set to 05, range 1-10
 unsigned char currentts[]{plussign[]};//default to plus sign
@@ -917,6 +917,7 @@ void horizontalsweepplus(){
 		//currenths[] = currenths[];//should not be used ever, but is here as fallback
 	}
 }
+//not done
 void verticalpositionplus(){
 
 }
@@ -987,13 +988,141 @@ void triggervoltageplus(){
 			currenttv[] = currenttv[];
 		}
 }
+//not done
 void horizontalpositionminus(){
 
 }
 //need this
-void horiontalsweepminus(){
-
+void horizontalsweepminus(){
+	if (currenths[0] == one[]){
+		//default subtraction by 10
+		currenths[] = {zero[],nine[],zero[],zero[]};
+	}
+	else{
+		if (currenths[1]==nine[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],eight[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],nine[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],nine[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],nine[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],nine[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],nine[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],nine[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],nine[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],nine[],seven[],zero[]};}
+			else{currenths[]={zero[],nine[],eight[],zero[]};}
+		}
+		else if (currenths[1]==eight[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],seven[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],eight[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],eight[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],eight[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],eight[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],eight[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],eight[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],eight[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],eight[],seven[],zero[]};}
+			else{currenths[]={zero[],eight[],eight[],zero[]};}
+		}
+		else if (currenths[1]==seven[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],six[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],seven[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],seven[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],seven[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],seven[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],seven[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],seven[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],seven[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],seven[],seven[],zero[]};}
+			else{currenths[]={zero[],seven[],eight[],zero[]};}
+		}
+		else if (currenths[1]==six[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],five[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],six[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],six[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],six[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],six[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],six[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],six[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],six[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],six[],seven[],zero[]};}
+			else{currenths[]={zero[],six[],eight[],zero[]};}
+		}
+		else if (currenths[1]==five[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],four[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],five[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],five[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],five[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],five[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],five[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],five[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],five[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],five[],seven[],zero[]};}
+			else{currenths[]={zero[],five[],eight[],zero[]};}
+		}
+		else if (currenths[1]==four[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],three[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],four[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],four[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],four[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],four[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],four[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],four[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],four[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],four[],seven[],zero[]};}
+			else{currenths[]={zero[],four[],eight[],zero[]};}
+		}
+		else if (curreths[1]==three[]){ 
+			if (currenths[2]==zero[]){currenths[]={zero[],two[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],three[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],three[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],three[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],three[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],three[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],three[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],three[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],three[],seven[],zero[]};}
+			else{currenths[]={zero[],three[],eight[],zero[]};}
+		}
+		else if (currenths[1]==two[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],one[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],two[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],two[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],two[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],two[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],two[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],two[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],two[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],two[],seven[],zero[]};}
+			else{currenths[]={zero[],two[],eight[],zero[]};}
+		}
+		else if (currenths[1]=one[]){
+			if (currenths[2]==zero[]){currenths[]={zero[],zero[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[]={zero[],one[],zero[],zero[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],one[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],one[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],one[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],one[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],one[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],one[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],one[],seven[],zero[]};}
+			else{currenths[]={zero[],one[],eight[],zero[]};}
+		}
+		else{
+			if (currenths[2]==zero[]){currenths[] = currenths[];}
+			else if (currenths[2]==one[]){{currenths[] = currenths[]};}
+			else if (currenths[2]==two[]){currenths[]={zero[],zero[],one[],zero[]};}
+			else if (currenths[2]==three[]){currenths[]={zero[],zero[],two[],zero[]};}
+			else if (currenths[2]==four[]){currenths[]={zero[],zero[],three[],zero[]};}
+			else if (currenths[2]==five[]){currenths[]={zero[],zero[],four[],zero[]};}
+			else if (currenths[2]==six[]){currenths[]={zero[],zero[],five[],zero[]};}
+			else if (currenths[2]==seven[]){currenths[]={zero[],zero[],six[],zero[]};}
+			else if (currenths[2]==eight[]){currenths[]={zero[],zero[],seven[],zero[]};}
+			else{currenths[]={zero[],zero[],eight[],zero[]};}
+		}
+		//currenths[] = currenths[];//should not be used ever, but is here as fallback
+	}
 }
+//not done
 void verticalpositionminus(){
 	if (currentvp[1] == four[] || currentvp[1] == five[] || currentvp[1] == six[] || currentvp[1] == seven[] || currentvp[1] == eight[] || currentvp[1] == nine[]){
 		currentvp[] = currentvp[]; //prevents out of range calculations
