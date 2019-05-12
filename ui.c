@@ -425,11 +425,132 @@ void horizontalsweepdivide(){
 	}
 	else{
 		//division sequence
+		if (currenths[0]==one[]&&currenths[1]==zero[]&&currenths[2]==zero[]&&currenths[3]==zero[]){currenths[]={zero[],one[],zero[],zero[]};} //division for 1000
+		else if (currenths[1] == zero[]){
+			if (currenths[2] == zero[]){currenths[] = currenths[];}//division for 00x0
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],zero[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],zero[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],zero[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],zero[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],zero[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],zero[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],zero[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],zero[],eight[]};}
+			else{currenths[]={zero[],zero[],zero[],nine[]};}
+		}
+		else if (currenths[1] == one[]){//division for 01x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],one[],zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],one[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],one[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],one[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],one[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],one[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],one[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],one[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],one[],eight[]};}
+			else{currenths[]={zero[],zero[],one[],nine[]};}
+		}
+		else if (currenths[1] == two[]){//division for 02x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],two[].zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],two[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],two[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],two[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],two[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],two[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],two[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],two[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],two[],eight[]};}
+			else{currenths[]={zero[],zero[],two[],nine[]};}
+		}
+		else if (currenths[1] == three[]){//division for 03x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],three[].zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],three[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],three[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],three[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],three[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],three[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],three[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],three[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],three[],eight[]};}
+			else{currenths[]={zero[],zero[],three[],nine[]};}
+		}
+		else if (currenths[1] == four[]){//division for 04x0
+			if (currenths[2] == zero[]){currenths[] = {zero[], zero[],four[].zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],four[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],four[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],four[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],four[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],four[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],four[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],four[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],four[],eight[]};}
+			else{currenths[]={zero[],zero[],four[],nine[]};}
+		}
+		else if (currenths[1] == five[]){//division for 05x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],five[].zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],five[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],five[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],five[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],five[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],five[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],five[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],five[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],five[],eight[]};}
+			else{currenths[]={zero[],zero[],five[],nine[]};}
+		}
+		else if (currenths[1] == six[]){//division for 06x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],six[],zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],six[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],six[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],six[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],six[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],six[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],six[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],six[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],six[],eight[]};}
+			else{currenths[]=zero[],zero[],six[],nine[]};}
+		}
+		else if (currenths[1] == seven[]){//division for 07x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],seven[].zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],seven[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],seven[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],seven[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],seven[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],seven[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],seven[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],seven[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],seven[],eight[]};}
+			else{currenths[]={zero[],zero[],seven[],nine[]};}
+		}
+		else if (currenths[1] == eight[]){//division for 08x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],eight[],zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],eight[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],eight[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],eight[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],eight[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],eight[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],eight[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],eight[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],eight[],eight[]};}
+			else{currenths[]={zero[],zero[],eight[],nine[]};}
+		}
+		else {//division for 09x0
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],nine[],zero[]};}
+			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],nine[],one[]};}
+			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],nine[],two[]};}
+			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],nine[],three[]};}
+			else if (currenths[2]==four[]){currenths[] = {zero[],zero[],nine[],four[]};}
+			else if (currenths[2]==five[]){currenths[] = {zero[],zero[],nine[],five[]};}
+			else if (currenths[2]==six[]){currenths[] = {zero[],zero[],nine[],six[]};}
+			else if (currenths[2]==seven[]){currenths[] = {zero[],zero[],nine[],seven[]};}
+			else if (currenths[2]==eight[]){currenths[] = {zero[],zero[],nine[],eight[]};}
+			else{currenths[]={zero[],zero[],nine[],nine[]};}
+		}
 	}
 }
 void horizontalsweepmultiply(){
 //default multiply by 10
-	if (currenths[0] != zero[]) {
+	if (currenths[0] == one[]) {
 		currenths[] = currenths[];//prevents going past 4 digits
 	}
 	else if (currenths[0] == zero[] && (currenths[1] == (two[] || three[] ||four[] || five[] || six[] || seven[] || eight[] || nine[] )) ){
@@ -571,12 +692,23 @@ void horizontalpositionplus(){
 	else if (currenthp[0]==plussign[] && currenthp[1]==three[] && (currenthp[2] == three[] || currenthp[2] == two[] || currenthp[2] == four[] || currenthp[2] == five[] || currenthp[2] == six[] || currenthp[2] == seven[] || currenthp[2] == eight[] || currenthp[2] == nine[])){
 		currenthp[] = currenthp[];//prevents out of range calculations for positive integers
 	}
-	else if (currenthp[0] == plussign[] && currenthp[1] == three[] && ()){
-		
+	else if (currenthp[0] == plussign[] && currenthp[1] == three[] && (currenthp[2]==two[] || (currenthp[2]==one[] && currenthp[3] != zero[]))){
+		currenthp[] = currenthp[];//prevents out of range calculations for positive integers
 	}
 	else if (currenthp[0] == minussign[]){
 		//addition for negative numbers
+		if (currethp[1]==three[]){
 		
+		}
+		else if (currenthp[1]==two[]){
+		
+		}
+		else if (currenthp[1]=one[]){
+		
+		}
+		else{
+		
+		}
 	}
 	else if (currenthp[0] == plussign[]){
 		//addition for positive numbers
