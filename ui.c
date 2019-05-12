@@ -1065,7 +1065,6 @@ void triggervoltageplus(){
 			currenttv[] = currenttv[];
 		}
 }
-//not done
 void horizontalpositionminus(){
 	//range -320 to 320
 	//increments of 10 ?
@@ -1301,15 +1300,82 @@ void horizontalsweepminus(){
 		//currenths[] = currenths[];//should not be used ever, but is here as fallback
 	}
 }
-//not done
 void verticalpositionminus(){
 	if (currentvp[1] == four[] || currentvp[1] == five[] || currentvp[1] == six[] || currentvp[1] == seven[] || currentvp[1] == eight[] || currentvp[1] == nine[]){
 		currentvp[] = currentvp[]; //prevents out of range calculations
 	}
-	else if (currentvp[0]==minussign[] && currentvp[1]==three[] && (currentvp[2] == three[] || currentvp[2] == two[] || currentvp[2] == four[] || currentvp[2] == five[] || currentvp[2] == six[] || currentvp[2] == seven[] || currentvp[2] == eight[] || currentvp[2] == nine[])){
+	else if (currentvp[0]==minussign[] && currentvp[1]==two[] && (currentvp[2] == four[] || currentvp[2] == five[] || currentvp[2] == six[] || currentvp[2] == seven[] || currentvp[2] == eight[] || currentvp[2] == nine[])){
 		currentvp[] = currentvp[];//prevents out of range calculations for negative integers
 	}
-
+	else if (currenthp[0] == minussign[] ){
+		//subtraction for negative numbers
+		if (currentvp[1]==two[]){
+			if (currentvp[2]==zero[]){currentvp[]={minussign[],two[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={minussign[],two[],two[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],two[],three[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],two[],four[],zero[]};}
+			else{currentvp[]= currentvp[];}
+		}
+		else if (currentvp[1]=one[]){
+			if (currentvp[2]==zero[]){currentvp[]={minussign[],one[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={minussign[],one[],two[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],one[],three[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],one[],four[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={minussign[],one[],five[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={minussign[],one[],six[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={minussign[],one[],seven[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={minussign[],one[],eight[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={minussign[],one[],nine[],zero[]};}
+			else{currentvp[]={minussign[],two[],zero[],zero[]};}
+		}
+		else{
+			if (currentvp[2]==one[]){currentvp[]={minussign[],zero[],one[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],zero[],two[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],zero[],three[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={minussign[],zero[],four[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={minussign[],zero[],five[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={minussign[],zero[],six[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={minussign[],zero[],seven[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={minussign[],zero[],eight[],zero[]};}
+			else if (currentvp[2]==nine){currentvp[]={minussign[],zero[],nine[],zero[]};}
+			else {currenthpv]= {minussign[],one[],zero[],zero[]};}
+		}
+	}
+	else if (currentvp[0] == plussign[]){
+		//subtraction for positive numbers
+		else if (currentvp[1]==two[]){//subtraction for 2xx
+			if (currentvp[2]==zero[]){currentvp[]={plussign[],one[],nine[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],two[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],two[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={plussign[],two[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={plussign[],two[],three[],zero[]};}
+			else {currentvp[]=currentvp[];}
+		}
+		else if (currentvp[1]=one[]){//subtraction for 1xx
+			if (currentvp[2]==zero[]){currentvp[]={plussign[],zero[],nine[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],one[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],one[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={plussign[],one[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={plussign[],one[],three[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={plussign[],one[],four[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={plussign[],one[],five[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={plussign[],one[],six[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={plussign[],one[],seven[],zero[]};}
+			else{currentvp[]={plussign[],one[],eight[],zero[]};}
+		}
+		else{//subtraction for 0xx
+			if (currentvp[2]==zero[]){currentvp[]={minussign[],zero[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],zero[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],zero[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={plussign[],zero[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={plussign[],zero[],three[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={plussign[],zero[],four[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={plussign[],zero[],five[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={plussign[],zero[],six[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={plussign[],zero[],seven[],zero[]};}
+			else{currentvp[]={plussign[],zero[],eight[],zero[]};}
+		}
+	}
 	else{
 		currentvp[] = currentvp[];//should never be reached, is here as fallback, might be deleted completely
 	}
