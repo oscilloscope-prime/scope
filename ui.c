@@ -5,6 +5,12 @@
 #include <sys/mman.h>
 #include <sys/time.h>
 
+//for mouse
+#include "usbmouse.h"
+#include "read_mouse.h" 
+#include <string.h>
+#include <arpa/inet.h>
+
 //defining colors for tiles
 #define emptycolor 0x00
 #define textcolor 0x80
@@ -13,6 +19,7 @@
 //textcolor is for 1
 
 //tile encodings, font is 8x8, including buttons
+
 
 static unsigned char  A[] = {B00000000,
 	B00011000,
@@ -868,14 +875,23 @@ int main(){
 	int 5ey = 5sy + 8;
 	int 6sy = 5ey + 8;
 	int 6ey = 6sy + 8;
+
+	/* --------get mouse position and button start---- */
+	struct mouse_info mouse0;
+	init_mouse();
+	/* --------get mouse position and button END---- */
+
 	while (1){
+		read_mouse(&mouse0);
+		printf("position of x, y are: %d %d; left click is %d\n",mouse0.x,mouse0.y,mouse0.button);
+
 	bytesmouse = readmouse(); //info sent from rex in a buffer
 	if (bytesmouse > 0){
 	//values from mouse - position
-	int inputx = mouse_data[1];
-	int inputy = mouse_data[2];
+	int inputx = mouse0.x;
+	int inputy = mouse0.y;
 	//value might not be needed if rex sends click info directly instead of having me check
-	int inputclick = mouse_data[0];
+	int inputclick = mouse0.button; // mouse0.button/click is 0, 1, or 2. left click is 1
 	if (inputclick){
 	switch (inputx){
     	case 1sx … 1ex:
