@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/time.h>
-
+//a lot of #defines missing
 //defining colors for tiles
 #define emptycolor 0x00
 #define textcolor 0x80
@@ -919,7 +919,85 @@ void horizontalsweepplus(){
 }
 //not done
 void verticalpositionplus(){
-
+ //240
+	//increments of 10 ?
+	if (currentvp[1]==three[] || currentvp[1] == four[] || currentvp[1] == five[] || currentvp[1] == six[] || currentvp[1] == seven[] || currentvp[1] == eight[] || currentvp[1] == nine[]){
+		currentvp[] = currentvp[]; //prevents out of range calculations
+	}
+	else if (currentvp[0]==plussign[] && currentvp[1]==two[] && (currentvp[2] == four[] || currentvp[2] == five[] || currentvp[2] == six[] || currentvp[2] == seven[] || currentvp[2] == eight[] || currentvp[2] == nine[])){
+		currentvp[] = currentvp[];//prevents out of range calculations for positive integers
+	}
+	else if (currentvp[0] == minussign[] ){
+		//addition for negative numbers
+		if (currentvp[1]==two[]){
+			if (currentvp[2]==zero[]){currentvp[]={minussign[],one[],nine[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={minussign[],two[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],two[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],two[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={minussign[],two[],three[],zero[]};}
+			else {currentvp[]=currentvp[];}
+		}
+		else if (currentvp[1]=one[]){
+			if (currentvp[2]==zero[]){currentvp[]={minussign[],zero[],nine[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={minussign[],one[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],one[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],one[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={minussign[],one[],three[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={minussign[],one[],four[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={minussign[],one[],five[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={minussign[],one[],six[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={minussign[],one[],seven[],zero[]};}
+			else{currentvp[]={minussign[],one[],eight[],zero[]};}
+		}
+		else{//addition for -0xx
+			if (currentvp[2]==one[]){currentvp[]={minussign[],zero[],zero[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={minussign[],zero[],one[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={minussign[],zero[],two[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={minussign[],zero[],three[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={minussign[],zero[],four[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={minussign[],zero[],five[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={minussign[],zero[],six[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={minussign[],zero[],seven[],zero[]};}
+			else if (currentvp[2]==nine){currentvp[]={minussign[],zero[],eight[],zero[]};}
+			else {currentvp[]= {plussign[],zero[],zero[],zero[]};}
+		}
+	}
+	else if (currenthp[0] == plussign[]){
+		//addition for positive numbers
+		if (currentvp[1]==two[]){//addition for 2xx
+			if (currentvp[2]==zero[]){currentvp[]={plussign[],two[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],two[],two[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],two[],three[],zero[]};}
+			else {currentvp[]={plussign[],two[],four[],zero[]};}
+		}
+		else if (currentvp[1]=one[]){//addition for 1xx
+			if (currentvp[2]==zero[]){currentvp[]={plussign[],one[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],one[],two[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],one[],three[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={plussign[],one[],four[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={plussign[],one[],five[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={plussign[],one[],six[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={plussign[],one[],seven[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={plussign[],one[],eight[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={plussign[],one[],nine[],zero[]};}
+			else{currentvp[]={plussign[],two[],zero[],zero[]};}
+		}
+		else{//addition for 0xx
+			if (currentvp[2]==zero[]){currentvp[]={plussign[],zero[],one[],zero[]};}
+			else if (currentvp[2]==one[]){currentvp[]={ plussign[],zero[],two[],zero[]};}
+			else if (currentvp[2]==two[]){currentvp[]={plussign[],zero[],three[],zero[]};}
+			else if (currentvp[2]==three[]){currentvp[]={plussign[],zero[],four[],zero[]};}
+			else if (currentvp[2]==four[]){currentvp[]={plussign[],zero[],five[],zero[]};}
+			else if (currentvp[2]==five[]){currentvp[]={plussign[],zero[],six[],zero[]};}
+			else if (currentvp[2]==six[]){currentvp[]={plussign[],zero[],seven[],zero[]};}
+			else if (currentvp[2]==seven[]){currentvp[]={plussign[],zero[],eight[],zero[]};}
+			else if (currentvp[2]==eight[]){currentvp[]={plussign[],zero[],nine[],zero[]};}
+			else{currentvp[]={plussign[],one[],zero[],zero[]};}
+		}
+	}
+	else{
+		currentvp[] = currentvp[];//should not be used ever, but is here as a fallback
+	}
 }
 void verticalsweepplus(){
 	//range 1-10
@@ -1130,9 +1208,7 @@ void verticalpositionminus(){
 	else if (currentvp[0]==minussign[] && currentvp[1]==three[] && (currentvp[2] == three[] || currentvp[2] == two[] || currentvp[2] == four[] || currentvp[2] == five[] || currentvp[2] == six[] || currentvp[2] == seven[] || currentvp[2] == eight[] || currentvp[2] == nine[])){
 		currentvp[] = currentvp[];//prevents out of range calculations for negative integers
 	}
-	else if(){
-	//minus calculation
-	}
+
 	else{
 		currentvp[] = currentvp[];//should never be reached, is here as fallback, might be deleted completely
 	}
