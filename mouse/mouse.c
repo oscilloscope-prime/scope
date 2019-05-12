@@ -15,16 +15,12 @@
 #include <string.h>
 #include <unistd.h>
 
+//for mouse
 #include <stdlib.h>
 #include <arpa/inet.h>
 #include "usbmouse.h"
+#include "read_mouse.h" 
 
-/* References on libusb 1.0 and the USB HID/mouse protocol
- * https://nxmnpg.lemoda.net/3/libusb_interrupt_transfer
- * http://libusb.org
- * http://www.dreamincode.net/forums/topic/148707-introduction-to-using-libusb-10/
- * http://www.usb.org/developers/devclass_docs/HID1_11.pdf
- */
 
 int vga_ball_fd;
 
@@ -32,30 +28,6 @@ int vga_ball_fd;
 struct libusb_device_handle *mouse;
 uint8_t endpoint_address;
 
-/* Read and print the background color 
-void print_background_color() {
-  vga_ball_arg_t vla;
-  
-  if (ioctl(vga_ball_fd, VGA_BALL_READ_BACKGROUND, &vla)) {
-      perror("ioctl(VGA_BALL_READ_BACKGROUND) failed");
-      return;
-  }
-  printf("%02x %02x %02x\n",
-	 vla.background.red, vla.background.green, vla.background.blue);
-}
-
-/* Set the background color 
-void set_background_color(const vga_ball_color_t *c,unsigned short xcoord, unsigned short ycoord)
-{
-  vga_ball_arg_t vla;
-  vla.x = xcoord;
-  vla.y = ycoord;
-  vla.background = *c;
-  if (ioctl(vga_ball_fd, VGA_BALL_WRITE_BACKGROUND, &vla)) {
-      perror("ioctl(VGA_BALL_SET_BACKGROUND) failed");
-      return;
-  }
-}*/
 void print_coordinate_info() {
   vga_ball_arg_t vla;
 
@@ -84,56 +56,35 @@ int main()
 
   vga_ball_arg_t vla;
   //-----------------------MOUSE_START-------------------------
-    // struct sockaddr_in serv_addr;
-  int px = 320;
-  int py = 240;
-  int numx, numy;
-  int modifierss = 0;
-  struct usb_mouse_packet packet;
-  int transferred;
-  // char keystate[12];
 
-  /* Open the mouse */
-  if ( (mouse = openmouse(&endpoint_address)) == NULL ) {
-    fprintf(stderr, "Did not find a mouse\n");
-    exit(1);
-  }
-    
+  //button_1 is horizontal_sweep
+  int pos_button_1_x = 480; 
+  int pos_button_1_y = 360;
 
-  for (;;) 
-  {
-    libusb_interrupt_transfer(mouse, endpoint_address,
-            (unsigned char *) &packet, sizeof(packet),
-            &transferred, 0);
-    // printf("%d\n", flg1);
+  //button_2 is trigger_voltage
+  int pos_button_2_x = 480; 
+  int pos_button_2_y = 380;
 
-    if (transferred == sizeof(packet)) {
-      if (packet.pos_x > 0x88) {
-        numx = -(0xFF - packet.pos_x + 1);
-      }
-      else { numx = packet.pos_x;}
+  int inputx = 320;
+  int inputy = 240;
+  int inputclick = 0;
 
-      if (packet.pos_y > 0x88) {
-        numy = -(0xFF - packet.pos_y + 1);
-      }
-      else { numy = packet.pos_y;}
+  int x_distance = 32;
+  int y_distance = 24;
+  int x_width = 16;
+  int y_width = 16
 
-      if (px < 1) { px = 1;}
-      else if (px > 0 && px < 640) { px = px + numx; }
-      else if (px > 639) { px = 639;}
-      else {px = 320;}
+  //save trigger_voltage and horizontal sweep value
+  int trigger_voltage = 2 // default 2, range(1.0 to 3.0)
+  int sweep_value = 2   // default us 1, range is (1~100) 
+  //the logic is drop all data except every sweep_value sample.
+  char str[50] = "without mouse click";
 
-      if (py < 1) { py = 1;}
-      else if (py > 0 && py < 480) { py = py + numy; }
-      else if (py > 479) { py = 479;}
-      else {py = 240;}
-
-      modifierss = packet.modifiers;
-      vla.x = px;
-      vla.y = py;
-      printf("position of x, y are: %d %d; left click is %d\n",px,py,modifierss);
-      }
-    }
+  /* --------get mouse position and button start---- */
+  // struct sockaddr_in serv_addr;
+  struct mouse_info mouse0;
+  init_mouse();
+  /* --------get mouse position and button END---- */
   //-----------------------mouse_END------------------------
   
   int flag = 0;
@@ -141,19 +92,7 @@ int main()
   int a =0;
  // int i;
   static const char filename[] = "/dev/vga_ball";
-  vla.x = px;
-  vla.y = py;
-  //static const vga_ball_color_t colors[] = {
-   // { 0xff, 0x00, 0x00 }, /* Red */
-   // { 0x00, 0xff, 0x00 }, /* Green */
-  //  { 0x00, 0x00, 0xff }, /* Blue */
-   // { 0xff, 0xff, 0x00 }, /* Yellow */
-   // { 0x00, 0xff, 0xff }, /* Cyan */
-  //  { 0xff, 0x00, 0xff }, /* Magenta */
-  //  { 0x80, 0x80, 0x80 }, /* Gray */
-   // { 0x00, 0x00, 0x00 }, /* Black */
-    //{ 0xff, 0xff, 0xff }  /* White */
-  //};
+
 
 # define COLORS 9
 
@@ -175,39 +114,45 @@ int main()
   while(1) {
    // set_background_color(&colors[i % COLORS ],600,200);
     //print_background_color();
-	
-		if (flag ==0){
-		vla.x = vla.x + 60;
-		}
-		
+  
+  //-----------------------MOUSE_START-------------------------
+  // struct sockaddr_in serv_addr;
 
-		/*if (flag2==0){
-		vla.y = vla.y+ 20;
-		}
-		else 
-		{
-		vla.y = vla.y -20;
-		}*/
+    read_mouse(&mouse0);
+    printf("position of x, y are: %d %d; left click is %d\n",mouse0.x,mouse0.y,mouse0.button);
 
+  //-----------------------mouse_END------------------------
 		
-		if(vla.x > 1250)
-		{
-		vla.x =30;
-		}
-		
-		/*
-		if(vla.y > 465)
-		{
-		flag2 = 1;
-		}
-		if(vla.y <16)
-		{
-		flag2 = 0;
-		}*/
-	
-		//vla.x= 180;
-		vla.y= 180;
+  //-----------------------parameter------------------------
+    inputx = mouse0.x;
+    inputy = mouse0.y;
+    inputclick = mouse0.button; // mouse0.button/click is 0, 1, or 2. left click is 1
 
+    if (mouse0.button == 1){
+      if (pos_button_1_y<inputy && inputy<pos_button_1_y + x_width){ 
+        if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
+          trigger_voltage = trigger_voltage + 0.5; str = "click add trigger_voltage";}
+        else if ( pos_button_1_x + x_distance<inputx && inputx<pos_button_1_x + (x_distance+x_width)){
+          trigger_voltage = trigger_voltage - 0.5; str = "click add trigger_voltage";}
+        // else {continue;}
+      }
+      else if (pos_button_1_y+24<inputy && inputy<pos_button_1_y+40){ 
+        if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
+          sweep_value = sweep_value *2; str = "click button sweep_value x2";}
+        else if ( pos_button_1_x + x_distance<inputx && 
+          inputx<pos_button_1_x + (x_distance+x_width) && 
+          sweep_value > 1){
+          sweep_value = sweep_value /2; str = "click button sweep_value /2";}
+        // else {continue;}
+      }
+      printf("trigger_voltage: %d, sweep_value: %d, the button state: %s", trigger_voltage,sweep_value,str);
+    }
+
+  //-----------------------parameter END------------------------ 
+    vla.x = mouse0.x;
+    vla.y = mouse0.y;
+    vla.trigger_voltage = trigger_voltage
+    vla.sweep_value = sweep_value
 		//printf("XandY(%d, %d)", vla.x, vla.y);
     		print_coordinate_info();
     		write_coordinates(&vla);
@@ -215,9 +160,6 @@ int main()
 		printf("a:%d",a);
 
     		usleep(400000);
-
-		//vla.x= 120;
-		vla.y= 120;
 
 		//printf("XandY(%d, %d)", vla.x, vla.y);
     		print_coordinate_info();
