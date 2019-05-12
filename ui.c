@@ -451,7 +451,7 @@ void horizontalsweepdivide(){
 			else{currenths[]={zero[],zero[],one[],nine[]};}
 		}
 		else if (currenths[1] == two[]){//division for 02x0
-			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],two[].zero[]};}
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],two[],zero[]};}
 			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],two[],one[]};}
 			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],two[],two[]};}
 			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],two[],three[]};}
@@ -463,7 +463,7 @@ void horizontalsweepdivide(){
 			else{currenths[]={zero[],zero[],two[],nine[]};}
 		}
 		else if (currenths[1] == three[]){//division for 03x0
-			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],three[].zero[]};}
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],three[],zero[]};}
 			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],three[],one[]};}
 			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],three[],two[]};}
 			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],three[],three[]};}
@@ -475,7 +475,7 @@ void horizontalsweepdivide(){
 			else{currenths[]={zero[],zero[],three[],nine[]};}
 		}
 		else if (currenths[1] == four[]){//division for 04x0
-			if (currenths[2] == zero[]){currenths[] = {zero[], zero[],four[].zero[]};}
+			if (currenths[2] == zero[]){currenths[] = {zero[], zero[],four[],zero[]};}
 			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],four[],one[]};}
 			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],four[],two[]};}
 			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],four[],three[]};}
@@ -487,7 +487,7 @@ void horizontalsweepdivide(){
 			else{currenths[]={zero[],zero[],four[],nine[]};}
 		}
 		else if (currenths[1] == five[]){//division for 05x0
-			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],five[].zero[]};}
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],five[],zero[]};}
 			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],five[],one[]};}
 			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],five[],two[]};}
 			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],five[],three[]};}
@@ -511,7 +511,7 @@ void horizontalsweepdivide(){
 			else{currenths[]=zero[],zero[],six[],nine[]};}
 		}
 		else if (currenths[1] == seven[]){//division for 07x0
-			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],seven[].zero[]};}
+			if (currenths[2] == zero[]){currenths[] = {zero[],zero[],seven[],zero[]};}
 			else if (currenths[2]==one[]){currenths[] = {zero[],zero[],seven[],one[]};}
 			else if (currenths[2]==two[]){currenths[] = {zero[],zero[],seven[],two[]};}
 			else if (currenths[2]==three[]){currenths[] = {zero[],zero[],seven[],three[]};}
@@ -562,7 +562,7 @@ void horizontalsweepmultiply(){
 	else{
 		//multiplication sequence
 		if (currenths[2] == zero[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],zero[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],zero[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],zero[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],zero[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],zero[],three[],zero[]};}
@@ -574,7 +574,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],zero[],nine[],zero[]};}
 		}
 		else if (currenths[2] == one[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],one[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],one[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],one[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],one[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],one[],three[],zero[]};}
@@ -586,7 +586,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],one[],nine[],zero[]};}
 		}
 		else if (currenths[2] == two[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],two[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],two[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],two[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],two[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],two[],three[],zero[]};}
@@ -598,7 +598,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],two[],nine[],zero[]};}
 		}
 		else if (currenths[2] == three[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],three[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],three[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],three[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],three[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],three[],three[],zero[]};}
@@ -610,7 +610,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],three[],nine[],zero[]};}
 		}
 		else if (currenths[2] == four[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[], four[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[], four[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],four[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],four[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],four[],three[],zero[]};}
@@ -622,7 +622,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],four[],nine[],zero[]};}
 		}
 		else if (currenths[2] == five[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],five[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],five[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],five[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],five[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],five[],three[],zero[]};}
@@ -634,7 +634,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],five[],nine[],zero[]};}
 		}
 		else if (currenths[2] == six[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],six[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],six[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],six[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],six[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],six[],three[],zero[]};}
@@ -646,7 +646,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],six[],nine[],zero[]};}
 		}
 		else if (currenths[2] == seven[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],seven[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],seven[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],seven[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],seven[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],seven[],three[],zero[]};}
@@ -658,7 +658,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],seven[],nine[],zero[]};}
 		}
 		else if (currenths[2] == eight[]){
-			if (currenths[3] == zero[]){currenths[] = {zero[],eight[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],eight[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],eight[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],eight[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],eight[],three[],zero[]};}
@@ -670,7 +670,7 @@ void horizontalsweepmultiply(){
 			else{currenths[]={zero[],eight[],nine[],zero[]};}
 		}
 		else {
-			if (currenths[3] == zero[]){currenths[] = {zero[],nine[].zero[],zero[]};}
+			if (currenths[3] == zero[]){currenths[] = {zero[],nine[],zero[],zero[]};}
 			else if (currenths[3]==one[]){currenths[] = {zero[],nine[],one[],zero[]};}
 			else if (currenths[3]==two[]){currenths[] = {zero[],nine[],two[],zero[]};}
 			else if (currenths[3]==three[]){currenths[] = {zero[],nine[],three[],zero[]};}
@@ -917,7 +917,6 @@ void horizontalsweepplus(){
 		//currenths[] = currenths[];//should not be used ever, but is here as fallback
 	}
 }
-//not done
 void verticalpositionplus(){
  //240
 	//increments of 10 ?
