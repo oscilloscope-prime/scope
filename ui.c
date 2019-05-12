@@ -931,12 +931,52 @@ void triggerslopeplus(){
 		currentts[0] = plussign[];
 	}
 }
+//need this
 void triggervoltageplus(){
-
+		if (currenttv[0]==zero[]){
+			if (currenttv[2]==zero[]){currenttv[] = {zero[],period[],one[]};} //this should never happen
+			else if(currenttv[2]==one[]){currenttv[]={zero[],period[],two[]}}
+			else if(currenttv[2]==two[]){currenttv[]= {zero[],period[],three[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {zero[],period[],four[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {zero[],period[],five[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {zero[],period[],six[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {zero[],period[],seven[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {zero[],period[],eight[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {zero[],period[],nine[]};}
+			else {currenttv[] = {one[],period[],zero[]};}
+		}
+		else if (currenttv[0]==one[]){
+			if (currenttv[2]==zero[]){currenttv[] = {one[],period[],one[]};}
+			else if(currenttv[2]==one[]){currenttv[]={one[],period[],two[]};}
+			else if (currenttv[2]==two[]){currenttv[]= {one[],period[],three[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {one[],period[],four[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {one[],period[],five[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {one[],period[],six[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {one[],period[],seven[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {one[],period[],eight[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {one[],period[],nine[]};}
+			else {currenttv[] = {three[],period[],zero[]};}
+		}
+		else if (currenttv[0]==two[]){
+			if (currenttv[2]==zero[]){currenttv[]={two[],period[],one[]};}
+			else if(currenttv[2]==one[]){currenttv[]={two[],period[],two[]};}
+			else if (currenttv[2]==two[]){currenttv[]= {two[],period[],three[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {two[],period[],four[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {two[],period[],five[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {two[],period[],six[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {two[],period[],seven[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {two[],period[],eight[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {two[],period[],nine[]};}
+			else {currenttv[] = {three[],period[],zero[]};}
+		}
+		else{
+			currenttv[] = currenttv[];
+		}
 }
 void horizontalpositionminus(){
 
 }
+//need this
 void horiontalsweepminus(){
 
 }
@@ -947,7 +987,9 @@ void verticalpositionminus(){
 	else if (currenthp[0]==minussign[] && currenthp[1]==three[] && (currenthp[2] == three[] || currenthp[2] == two[] || currenthp[2] == four[] || currenthp[2] == five[] || currenthp[2] == six[] || currenthp[2] == seven[] || currenthp[2] == eight[] || currenthp[2] == nine[])){
 		currenthp[] = currenthp[];//prevents out of range calculations for negative integers
 	}
-	
+	else if{
+	//minus calculation
+	}
 	else{
 		currenthp[] = currenthp[];//should never be reached, is here as fallback, might be deleted completely
 	}
@@ -963,15 +1005,56 @@ void triggerslopeminus(){
 		currentts[0] = minussign[];
 	}
 }
-void triggervoltageminus(){
-
+//need this
+void triggervoltageminus(){//range 0.1 - 3.9
+	if (currenttv[0]==zero[] && currenttv[2]==one[]){
+		currenttv[]=currenttv[];
+	}
+	else{
+		if (currenttv[0]==zero[]){
+			if (currenttv[2]==two[]){currenttv[]= {zero[],period[],one[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {zero[],period[],two[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {zero[],period[],three[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {zero[],period[],four[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {zero[],period[],five[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {zero[],period[],six[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {zero[],period[],seven[]};}
+			else {currenttv[] = {zero[],period[],eight[]};}
+		}
+		else if (currenttv[0]==one[]){
+			if (currenttv[2]==one[]){currenttv[]={one[],period[],zero[]};}
+			else if (currenttv[2]==two[]){currenttv[]= {one[],period[],one[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {one[],period[],two[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {one[],period[],three[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {one[],period[],four[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {one[],period[],five[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {one[],period[],six[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {one[],period[],seven[]};}
+			else if (currenttv[2]==zero[]){currenttv[] = {zero[],period[],nine[]};}
+			else {currenttv[] = {one[],period[],eight[]};}
+		}
+		else if (currenttv[0]==two[]){
+			if (currenttv[2]==one[]){currenttv[]={two[],period[],zero[]};}
+			else if (currenttv[2]==two[]){currenttv[]= {two[],period[],one[]};}
+			else if (currenttv[2]==three[]){currenttv[]= {two[],period[],two[]};}
+			else if (currenttv[2]==four[]){currenttv[]= {two[],period[],three[]};}
+			else if (currenttv[2]==five[]){currenttv[]= {two[],period[],four[]};}
+			else if (currenttv[2]==six[]){currenttv[]= {two[],period[],five[]};}
+			else if (currenttv[2]==seven[]){currenttv[]= {two[],period[],six[]};}
+			else if (currenttv[2]==eight[]){currenttv[]= {two[],period[],seven[]};}
+			else if (currenttv[2]==zero[]){currenttv[]={one[],period[],nine[]};}
+			else {currenttv[] = {two[],period[],eight[]};}
+		}
+		else{
+			currenttv[] = {two[],period[],nine[]};
+		}
+	}
 }
-
 int bytesmouse; //bytes read from mouse
 
 int main(){
 	//screen starts at 0,0 on upper left
-	int 1sx = //button x start, not yet decided
+	int 1sx = 300//button x start, not yet decided
 	int 1ex = 1sx + 8;//button x end
 	int 2sx = 1ex + 8;
 	int 2ex = 2sx + 8;
@@ -979,7 +1062,7 @@ int main(){
 	int 3ex = 3sx + 8;
 	int 4sx = 3ex + 8;
 	int 4ex = 4sx + 8;
-	int 1sy = //button y start, not yet decided
+	int 1sy = 300//button y start, not yet decided
 	int 1ey = 1sy + 8; //button y end
 	int 2sy = 1ey + 8;
 	int 2ey = 2sy + 8;
@@ -992,7 +1075,7 @@ int main(){
 	int 6sy = 5ey + 8;
 	int 6ey = 6sy + 8;
 	while (1){
-	bytesmouse = readmouse(); //info sent from rex in a buffer
+	bytesmouse = readmouse(); //info sent from rex in a buffer, fix this 
 	if (bytesmouse > 0){
 	//values from mouse - position
 	int inputx = mouse_data[1];
