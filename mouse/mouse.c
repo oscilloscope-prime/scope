@@ -77,6 +77,7 @@ int main()
   //save trigger_voltage and horizontal sweep value
   int trigger_voltage = 2 // default 2, range(1.0 to 3.0)
   int sweep_value = 2   // default us 1, range is (1~100) 
+  int trigger_slope = 1
   //the logic is drop all data except every sweep_value sample.
   char str[50] = "without mouse click";
 
@@ -138,14 +139,16 @@ int main()
       }
       else if (pos_button_1_y+24<inputy && inputy<pos_button_1_y+40){ 
         if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
-          sweep_value = sweep_value *2; str = "click button sweep_value x2";}
+          // sweep_value = sweep_value *2; str = "click button sweep_value x2";}
+          trigger_slope = 0; str = "click button trigger_slope minus";}
         else if ( pos_button_1_x + x_distance<inputx && 
           inputx<pos_button_1_x + (x_distance+x_width) && 
           sweep_value > 1){
-          sweep_value = sweep_value /2; str = "click button sweep_value /2";}
+          // sweep_value = sweep_value /2; str = "click button sweep_value /2";}
+          trigger_slope = 1; str = "click button trigger_slope pos";}
         // else {continue;}
       }
-      printf("trigger_voltage: %d, sweep_value: %d, the button state: %s", trigger_voltage,sweep_value,str);
+      printf("trigger_voltage: %d, trigger_slope: %d, the button state: %s", trigger_voltage,trigger_slope,str);
     }
 
   //-----------------------parameter END------------------------ 
@@ -153,6 +156,7 @@ int main()
     vla.y = mouse0.y;
     vla.trigger_voltage = trigger_voltage
     vla.sweep_value = sweep_value
+    vla.trigger_slope = trigger_slope
 		//printf("XandY(%d, %d)", vla.x, vla.y);
     		print_coordinate_info();
     		write_coordinates(&vla);

@@ -19,7 +19,7 @@ unsigned short x, y;
 } vga_ball_arg_t;*/
 
 typedef struct {
-  unsigned short x, y, trigger_voltage, sweep_value; 
+  unsigned short x, y, trigger_voltage, trigger_slope, sweep_value; 
   //vga_ball_color_t background;
 } vga_ball_arg_t;
 
