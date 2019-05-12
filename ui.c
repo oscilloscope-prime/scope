@@ -695,27 +695,94 @@ void horizontalpositionplus(){
 	else if (currenthp[0] == plussign[] && currenthp[1] == three[] && (currenthp[2]==two[] || (currenthp[2]==one[] && currenthp[3] != zero[]))){
 		currenthp[] = currenthp[];//prevents out of range calculations for positive integers
 	}
-	else if (currenthp[0] == minussign[]){
+	else if (currenthp[0] == minussign[] ){
 		//addition for negative numbers
 		if (currethp[1]==three[]){
-		
+			if (currenthp[2]==zero[]){currenthp[]={minussign[],two[],nine[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={minussign[],three[],zero[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={minussign[],three[],one[],zero[]};}
+			else {currenthp[]=currenthp[];}
 		}
 		else if (currenthp[1]==two[]){
-		
+			if (currenthp[2]==zero[]){currenthp[]={minussign[],one[],nine[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={minussign[],two[],zero[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={minussign[],two[],one[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={minussign[],two[],two[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={minussign[],two[],three[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={minussign[],two[],four[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={minussign[],two[],five[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={minussign[],two[],six[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={minussign[],two[],seven[],zero[]};}
+			else{currenthp[]={minussign[],two[],eight[],zero[]};}
 		}
 		else if (currenthp[1]=one[]){
-		
+			if (currenthp[2]==zero[]){currenthp[]={minussign[],zero[],nine[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={minussign[],one[],zero[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={minussign[],one[],one[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={minussign[],one[],two[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={minussign[],one[],three[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={minussign[],one[],four[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={minussign[],one[],five[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={minussign[],one[],six[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={minussign[],one[],seven[],zero[]};}
+			else{currenthp[]={minussign[],one[],eight[],zero[]};}
 		}
-		else{
-		
+		else{//addition for -0xx
+			if (currenthp[2]==one[]){currenthp[]={minussign[],zero[],zero[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={minussign[],zero[],one[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={minussign[],zero[],two[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={minussign[],zero[],three[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={minussign[],zero[],four[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={minussign[],zero[],five[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={minussign[],zero[],six[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={minussign[],zero[],seven[],zero[]};}
+			else if (currenthp[2]==nine){currenthp[]={minussign[],zero[],eight[],zero[]};}
+			else {currenthp[]= {plussign[],zero[],zero[],zero[]};}
 		}
 	}
 	else if (currenthp[0] == plussign[]){
 		//addition for positive numbers
-		
-	}
-	else if {
-		//switch the signs here
+		if (currethp[1]==three[]){ //addition for 3xx
+			if (currenthp[2]==zero[]){currenthp[]={plussign[],three[],one[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={plussign[],three[],two[],zero[]};}
+			else {currenthp[]=currenthp[];}
+		}
+		else if (currenthp[1]==two[]){//addition for 2xx
+			if (currenthp[2]==zero[]){currenthp[]={plussign[],two[],one[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={plus[],two[],two[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={plussign[],two[],three[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={plussign[],two[],four[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={plussign[],two[],five[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={plussign[],two[],six[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={plussign[],two[],seven[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={plussign[],two[],eight[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={plussign[],two[],nine[],zero[]};}
+			else{currenthp[]={plussign[],three[],zero[],zero[]};}
+		}
+		else if (currenthp[1]=one[]){//addition for 1xx
+			if (currenthp[2]==zero[]){currenthp[]={plussign[],one[],one[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={plus[],one[],two[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={plussign[],one[],three[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={plussign[],one[],four[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={plussign[],one[],five[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={plussign[],one[],six[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={plussign[],one[],seven[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={plussign[],one[],eight[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={plussign[],one[],nine[],zero[]};}
+			else{currenthp[]={plussign[],two[],zero[],zero[]};}
+		}
+		else{//addition for 0xx
+			if (currenthp[2]==zero[]){currenthp[]={plussign[],zero[],one[],zero[]};}
+			else if (currenthp[2]==one[]){currenthp[]={plus[],zero[],two[],zero[]};}
+			else if (currenthp[2]==two[]){currenthp[]={plussign[],zero[],three[],zero[]};}
+			else if (currenthp[2]==three[]){currenthp[]={plussign[],zero[],four[],zero[]};}
+			else if (currenthp[2]==four[]){currenthp[]={plussign[],zero[],five[],zero[]};}
+			else if (currenthp[2]==five[]){currenthp[]={plussign[],zero[],six[],zero[]};}
+			else if (currenthp[2]==six[]){currenthp[]={plussign[],zero[],seven[],zero[]};}
+			else if (currenthp[2]==seven[]){currenthp[]={plussign[],zero[],eight[],zero[]};}
+			else if (currenthp[2]==eight[]){currenthp[]={plussign[],zero[],nine[],zero[]};}
+			else{currenthp[]={plussign[],one[],zero[],zero[]};}
+		}
 	}
 	else{
 		currenthp[] = currenthp[];//should not be used ever, but is here as a fallback
