@@ -58,19 +58,19 @@ int main()
   //-----------------------MOUSE_START-------------------------
 
   //button_1 is horizontal_sweep
-  int pos_button_1_x = 480; 
-  int pos_button_1_y = 360;
+  int pos_button_1_x = 500; 
+  int pos_button_1_y = 350;
 
   //button_2 is trigger_voltage
-  int pos_button_2_x = 480; 
-  int pos_button_2_y = 380;
+  int pos_button_2_x = 500; 
+  int pos_button_2_y = 425;
 
   int inputx = 320;
   int inputy = 240;
   int inputclick = 0;
 
-  int x_distance = 32;
-  int y_distance = 24;
+  int x_distance = 50;
+  int y_distance = 75;
   int x_width = 16;
   int y_width = 16
 
@@ -137,13 +137,12 @@ int main()
           trigger_voltage = trigger_voltage - 0.5; str = "click add trigger_voltage";}
         // else {continue;}
       }
-      else if (pos_button_1_y+24<inputy && inputy<pos_button_1_y+40){ 
+      else if (pos_button_1_y+y_distance<inputy && inputy<pos_button_1_y+(y_distance+y_width)){ 
         if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
           // sweep_value = sweep_value *2; str = "click button sweep_value x2";}
           trigger_slope = 0; str = "click button trigger_slope minus";}
         else if ( pos_button_1_x + x_distance<inputx && 
-          inputx<pos_button_1_x + (x_distance+x_width) && 
-          sweep_value > 1){
+          inputx<pos_button_1_x + (x_distance+x_width)){
           // sweep_value = sweep_value /2; str = "click button sweep_value /2";}
           trigger_slope = 1; str = "click button trigger_slope pos";}
         // else {continue;}
