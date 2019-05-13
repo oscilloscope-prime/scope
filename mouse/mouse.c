@@ -133,22 +133,22 @@ int main()
       if (pos_button_1_y<inputy && inputy<pos_button_1_y + x_width){ 
         if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
           trigger_voltage = trigger_voltage + 0.5; 
-          str[] = "click add trigger_voltage";}
+          str[50] = "click add trigger_voltage";}
         else if ( pos_button_1_x + x_distance<inputx && inputx<pos_button_1_x + (x_distance+x_width)){
           trigger_voltage = trigger_voltage - 0.5; 
-          str[] = "click add trigger_voltage";}
+          str[50] = "click add trigger_voltage";}
         // else {continue;}
       }
       else if (pos_button_1_y+y_distance<inputy && inputy<pos_button_1_y+(y_distance+y_width)){ 
         if ( pos_button_1_x<inputx && inputx<pos_button_1_x + x_width){
           // sweep_value = sweep_value *2; str = "click button sweep_value x2";}
           trigger_slope = 0; 
-          str[] = "click button trigger_slope minus";}
+          str[50] = "click button trigger_slope minus";}
         else if ( pos_button_1_x + x_distance<inputx && 
           inputx<pos_button_1_x + (x_distance+x_width)){
           // sweep_value = sweep_value /2; str = "click button sweep_value /2";}
           trigger_slope = 1; 
-          str[] = "click button trigger_slope pos";}
+          str[50] = "click button trigger_slope pos";}
         // else {continue;}
       }
       printf("trigger_voltage: %d, trigger_slope: %d, the button state: %s", trigger_voltage,trigger_slope,str);
