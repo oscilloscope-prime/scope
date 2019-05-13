@@ -72,12 +72,12 @@ int main()
   int x_distance = 50;
   int y_distance = 75;
   int x_width = 16;
-  int y_width = 16
+  int y_width = 16;
 
   //save trigger_voltage and horizontal sweep value
-  int trigger_voltage = 2 // default 2, range(1.0 to 3.0)
-  int sweep_value = 2   // default us 1, range is (1~100) 
-  int trigger_slope = 1
+  int trigger_voltage = 2; // default 2, range(1.0 to 3.0)
+  int sweep_value = 2;   // default us 1, range is (1~100) 
+  int trigger_slope = 1;
   //the logic is drop all data except every sweep_value sample.
   char str[50] = "without mouse click";
 
@@ -153,9 +153,9 @@ int main()
   //-----------------------parameter END------------------------ 
     vla.x = mouse0.x;
     vla.y = mouse0.y;
-    vla.trigger_voltage = trigger_voltage
-    vla.sweep_value = sweep_value
-    vla.trigger_slope = trigger_slope
+    vla.trigger_voltage = trigger_voltage;
+    vla.sweep_value = sweep_value;
+    vla.trigger_slope = trigger_slope;
 		//printf("XandY(%d, %d)", vla.x, vla.y);
     		print_coordinate_info();
     		write_coordinates(&vla);
