@@ -1,6 +1,16 @@
 	component soc_system is
 		port (
+			adc_cs                       : out   std_logic;                                        -- cs
+			adc_sclk                     : out   std_logic;                                        -- sclk
+			adc_din                      : out   std_logic;                                        -- din
+			adc_dout                     : in    std_logic                     := 'X';             -- dout
 			clk_clk                      : in    std_logic                     := 'X';             -- clk
+			hex_h0                       : out   std_logic_vector(6 downto 0);                     -- h0
+			hex_h2                       : out   std_logic_vector(6 downto 0);                     -- h2
+			hex_h1                       : out   std_logic_vector(6 downto 0);                     -- h1
+			hex_h3                       : out   std_logic_vector(6 downto 0);                     -- h3
+			hex_h4                       : out   std_logic_vector(6 downto 0);                     -- h4
+			hex_h5                       : out   std_logic_vector(6 downto 0);                     -- h5
 			hps_hps_io_emac1_inst_TX_CLK : out   std_logic;                                        -- hps_io_emac1_inst_TX_CLK
 			hps_hps_io_emac1_inst_TXD0   : out   std_logic;                                        -- hps_io_emac1_inst_TXD0
 			hps_hps_io_emac1_inst_TXD1   : out   std_logic;                                        -- hps_io_emac1_inst_TXD1
@@ -74,23 +84,23 @@
 			vga_hs                       : out   std_logic;                                        -- hs
 			vga_vs                       : out   std_logic;                                        -- vs
 			vga_blank_n                  : out   std_logic;                                        -- blank_n
-			vga_sync_n                   : out   std_logic;                                        -- sync_n
-			adc_cs                       : out   std_logic;                                        -- cs
-			adc_sclk                     : out   std_logic;                                        -- sclk
-			adc_din                      : out   std_logic;                                        -- din
-			adc_dout                     : in    std_logic                     := 'X';             -- dout
-			hex_h0                       : out   std_logic_vector(6 downto 0);                     -- h0
-			hex_h2                       : out   std_logic_vector(6 downto 0);                     -- h2
-			hex_h1                       : out   std_logic_vector(6 downto 0);                     -- h1
-			hex_h3                       : out   std_logic_vector(6 downto 0);                     -- h3
-			hex_h4                       : out   std_logic_vector(6 downto 0);                     -- h4
-			hex_h5                       : out   std_logic_vector(6 downto 0)                      -- h5
+			vga_sync_n                   : out   std_logic                                         -- sync_n
 		);
 	end component soc_system;
 
 	u0 : component soc_system
 		port map (
+			adc_cs                       => CONNECTED_TO_adc_cs,                       --      adc.cs
+			adc_sclk                     => CONNECTED_TO_adc_sclk,                     --         .sclk
+			adc_din                      => CONNECTED_TO_adc_din,                      --         .din
+			adc_dout                     => CONNECTED_TO_adc_dout,                     --         .dout
 			clk_clk                      => CONNECTED_TO_clk_clk,                      --      clk.clk
+			hex_h0                       => CONNECTED_TO_hex_h0,                       --      hex.h0
+			hex_h2                       => CONNECTED_TO_hex_h2,                       --         .h2
+			hex_h1                       => CONNECTED_TO_hex_h1,                       --         .h1
+			hex_h3                       => CONNECTED_TO_hex_h3,                       --         .h3
+			hex_h4                       => CONNECTED_TO_hex_h4,                       --         .h4
+			hex_h5                       => CONNECTED_TO_hex_h5,                       --         .h5
 			hps_hps_io_emac1_inst_TX_CLK => CONNECTED_TO_hps_hps_io_emac1_inst_TX_CLK, --      hps.hps_io_emac1_inst_TX_CLK
 			hps_hps_io_emac1_inst_TXD0   => CONNECTED_TO_hps_hps_io_emac1_inst_TXD0,   --         .hps_io_emac1_inst_TXD0
 			hps_hps_io_emac1_inst_TXD1   => CONNECTED_TO_hps_hps_io_emac1_inst_TXD1,   --         .hps_io_emac1_inst_TXD1
@@ -164,16 +174,6 @@
 			vga_hs                       => CONNECTED_TO_vga_hs,                       --         .hs
 			vga_vs                       => CONNECTED_TO_vga_vs,                       --         .vs
 			vga_blank_n                  => CONNECTED_TO_vga_blank_n,                  --         .blank_n
-			vga_sync_n                   => CONNECTED_TO_vga_sync_n,                   --         .sync_n
-			adc_cs                       => CONNECTED_TO_adc_cs,                       --      adc.cs
-			adc_sclk                     => CONNECTED_TO_adc_sclk,                     --         .sclk
-			adc_din                      => CONNECTED_TO_adc_din,                      --         .din
-			adc_dout                     => CONNECTED_TO_adc_dout,                     --         .dout
-			hex_h0                       => CONNECTED_TO_hex_h0,                       --      hex.h0
-			hex_h2                       => CONNECTED_TO_hex_h2,                       --         .h2
-			hex_h1                       => CONNECTED_TO_hex_h1,                       --         .h1
-			hex_h3                       => CONNECTED_TO_hex_h3,                       --         .h3
-			hex_h4                       => CONNECTED_TO_hex_h4,                       --         .h4
-			hex_h5                       => CONNECTED_TO_hex_h5                        --         .h5
+			vga_sync_n                   => CONNECTED_TO_vga_sync_n                    --         .sync_n
 		);
 

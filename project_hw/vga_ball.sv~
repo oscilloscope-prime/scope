@@ -27,8 +27,18 @@ module vga_ball(	input logic        	clk,
 			);
 
 	logic [11:0] ADC_REG; 
-	logic [11:0] PREV_ADC_REG; 
+	
+	logic [3:0] testHex;
+	initial begin
+		testHex = 4'd0;
+	end
 
+	logic prev_trig;
+	logic cur_trig;
+/*
+	assign prev_trig = 0;
+	assign cur_trig = 0;
+*/
 	logic    ADC_DoSth;
 	
 	logic	[3:0] disp0, disp1, disp2, disp3, disp4, disp5;
@@ -42,11 +52,13 @@ module vga_ball(	input logic        	clk,
 
 	logic full;
 
-	logic [11:0] trig;
-	assign trig = 12'd 2; //trigger looks for 2V
+	logic [11:0] trig =12'd1;
+	//assign trig = 12'd 2000; //trigger looks for 2V
+	logic [11:0] trig_thousand;
+	assign trig_thousand = trig * 12'd 1000;
 
-	logic rising;
-	assign rising = 1'b 1; //for rising edge. toggle to 0 for falling 
+	logic rising = 1'b 1;
+	//assign rising = 1'b 1; //for rising edge. toggle to 0 for falling 
 
 
 /* ================================================================================vga stuff=========================================================================================== */	
@@ -56,7 +68,7 @@ module vga_ball(	input logic        	clk,
 
    logic [7:0] 	   background_r, background_g, background_b;
    logic [10:0]     posX;
-   logic [9:0]      posY;	
+   logic [9:0]      posY;	//trigger
    logic [10:0]     dummy; 
 
    logic [1:0] flag;  
@@ -68,12 +80,12 @@ module vga_ball(	input logic        	clk,
 
 	      /*input logic        clk,*/
 	      logic [9:0]  a1;
-	      logic [15:0]  din1;
+	      logic [8:0]  din1;
 	      logic we1;
 	      logic [15:0] dout1;
 
  	      logic [9:0]  a2;
-	      logic [15:0]  din2;
+	      logic [8:0]  din2;
 	      logic we2;
 	      logic [15:0] dout2;
 
@@ -99,12 +111,45 @@ module vga_ball(	input logic        	clk,
 
 		logic [15:0] shape_mi1;
 		logic [3:0] a_mi1;
+
+//FOR ZERO RISING		
+		logic [15:0] shape_o;
+		logic [3:0] a_o;
+//FOR ONE RISING		
+		logic [15:0] shape_one;
+		logic [3:0] a_one;
+
 mouse mouse(.*);
 
 plus p(.*), p1(clk, shape_p1,a_p1);
 minus m(.*), mi1(clk, shape_mi1,a_mi1);
 T t(.*);
 R r(.*);
+
+//for rising 
+zero z(.*);
+one o(.*);
+
+//FOR ZERO Trigger		
+		logic [15:0] shape_o_trg;
+		logic [3:0] a_o_trg;
+//FOR ONE Trigger		
+		logic [15:0] shape_one_trg;
+		logic [3:0] a_one_trg;
+
+		logic [15:0] shape_two;
+		logic [3:0] a_two;
+
+		logic [15:0] shape_th;
+		logic [3:0] a_th;
+
+
+//for trigger
+
+zero z1(clk,shape_o_trg,a_o_trg);
+one o1(clk,shape_one_trg,a_one_trg);
+th th(.*);
+two two(.*);
 
 /* ======================================================================== ADDING MOUSE ===================================================================== */
 
@@ -113,18 +158,80 @@ logic first = 1'b1;
 logic [9:0] a_display;
 logic [9:0] a_input = 10'b0;
 logic [15:0] dout_display;
-logic [15:0] din_input;
+logic [8:0] din_input;
 logic  we_input;
 assign we_input = valid;
 assign din_input = sample;
 assign din1 = din_input;
 assign din2 = din_input;
 
+//FOR RISING
+assign a_one = vcount - 400;
+assign a_o = vcount -400;
+
+//FOR TRIG 
+assign a_one_trg = vcount - 325;
+assign a_o_trg = vcount - 325;
+assign a_two = vcount - 325;
+assign a_th = vcount - 325;
+		logic [15:0] shape_trg;
+		logic [3:0] a_trg;
+
+
+		logic [15:0] shape_rising;
+		logic [3:0] a_rising;
 
 memory m1(clk, a1, din1, we1, dout1),
        m2(clk, a2, din2, we2, dout2);
 
 vga_counters counters(.clk50(clk), .*);
+
+always_comb begin
+//logic for RISING 
+	if(rising)
+		begin
+		shape_rising = shape_one;
+		a_rising = a_one; 
+		end
+	else
+		begin
+		shape_rising = shape_o;
+		a_rising = a_o; 
+		
+		end
+
+
+end
+
+always_comb begin
+//logic for trigger 
+	if(trig == 12'd1)
+		begin
+		shape_trg = shape_one_trg;
+		a_trg = a_one_trg; 
+		end
+	else if (trig == 12'd0)
+		begin
+		shape_trg = shape_o_trg;
+		a_trg = a_o_trg; 
+		
+		end
+
+	else if (trig == 12'd2)
+		begin
+		shape_trg = shape_two;
+		a_trg = a_two; 
+		
+		end
+	else
+		begin
+		shape_trg = shape_th;
+		a_trg = a_th;
+		
+		end
+
+
+end
 
 always_comb begin
 
@@ -146,31 +253,45 @@ always_comb begin
   end
   end
 
+  	logic start;
+	initial begin
+		start = 1'd1;
+	end
 
   always_ff @(posedge clk)
 	begin
-	if (reset)begin 
-	full  <= 1'b0; //changed to 0
+	if (start) begin 
+	full  <= 1'b1; //changed to 0
 	a_input = 10'b0;
 	first = 1'b1;
+	start = 1'd 0;
 	end
+	
+	else
+	begin
+
 	if (valid)begin
-		if(!full)
+
+		if(full)
+
 		begin
 		full <= 1'b0;
 		end
-		if(a_input == 10'd639) begin
-			a_input <= 10'b0;
+
+		else if(a_input == 10'd639) begin //added here
+			a_input <= 10'd0;
 			full <= 1'b1;
 			first<= ~ first;
 		end
 		else begin
-			a_input <=  a_input + 10'b1;	
+			a_input <=  a_input + 10'd1;	
 			full <= full;
 		end	
 	end 
 	else if (!valid) begin
 		full <= full;
+
+	end	
 	end
   end
 
@@ -186,8 +307,9 @@ always_comb begin
 	flag <= 1'd0;
 	flag2 <= 1'd0;
 	dummy <= hcount;
-
-
+	rising<= 1'd1;
+	trig <=12'd1;
+	
      end else if (chipselect && write) begin
 	
        case (address)
@@ -195,7 +317,7 @@ always_comb begin
 
          3'h0 : posX <= writedata;
          3'h1 : posY <= writedata;
- 	 	 3'h2 : rising <= writedata;
+ 	 3'h2 : rising <= writedata;
          3'h3 : trig <= writedata;
 	 
 
@@ -253,20 +375,23 @@ assign a_mi1  = vcount - 425;
 		//{VGA_R, VGA_G, VGA_B} = {8'h00, 8'hff, 8'h00};
 	//else if ( (hcount[10:1]< 500+15) && (hcount[10:1] > 500-15) && (vcount[9:0]>350-15) && (vcount[9:0] < 350 + 15) )
 		//{VGA_R, VGA_G, VGA_B} = {8'h00, 8'hff, 8'h00};
+	//RISING 
+	else if( ((hcount[10:1]< 525+16) && (hcount[10:1] >= 525) && (vcount[9:0]>=400) && (vcount[9:0] < 400 + 16) ) && (shape_rising[hcount[10:1] - 525]))
+		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'h00, 8'hff};
+
+	else if( ((hcount[10:1]< 525+16) && (hcount[10:1] >= 525) && (vcount[9:0]>=325) && (vcount[9:0] < 325 + 16) ) && (shape_trg[hcount[10:1] - 525]))
+		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'h00, 8'hff};
 
 
+	else if (dout_display[9:0] == (480 - vcount[9:0]))
+	//else if (sample[8:0] == (480 - vcount[9:0]))
+		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'hff, 8'hff};
 
-
-
-
-	else if (dout_display[9:0] == vcount[9:0])
-		{VGA_R, VGA_G, VGA_B} = {8'h00, 8'h00, 8'hff};
-
-	else if(vcount[9:0] == 150 )
+	else if(vcount[9:0] == 240 )
 		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'hff, 8'h00};
 
-	else if ( (hcount[10:0]%30 == 0 || vcount[9:0]%15 == 0 ) && (vcount[9:0]<301) )
-   		{VGA_R, VGA_G, VGA_B} = {8'hff, 8'hff, 8'hff};
+	else if ( (hcount[10:1]%60 == 0 || vcount[9:0]%60 == 0 ))
+   		{VGA_R, VGA_G, VGA_B} = {8'h00, 8'h33, 8'h66};
 
 	//else if (dout[9:0] == vcount[9:0])
 		//{VGA_R, VGA_G, VGA_B} = {8'hff, 8'hff, 8'hff};
@@ -279,13 +404,15 @@ assign a_mi1  = vcount - 425;
 
 	else
 	  {VGA_R, VGA_G, VGA_B} =
+	
              //{background_r, background_g, background_b};
-		{ 8'hff, 8'h00, 8'hff };
+		//{ 8'hff, 8'h00, 8'hff };
+		 { 8'h00, 8'h00, 8'h00 };
 	end
        
    end
 
-/* ================================================================================vga stuff=========================================================================================== */	
+/* ================================================================================adc stuff=========================================================================================== */	
 
 	clockdiv cd(.clk(clk), .en(ADC_SCLK));
 	
@@ -295,14 +422,16 @@ assign a_mi1  = vcount - 425;
 	
 	toADC data2ADC(.mclk(clk), .ds(ADC_DoSth), .cs(ADC_CS_N), .din(ADC_DIN));
 	
-	fromADC data4mADC(.mclk(clk), .ds(ADC_DoSth), .cs(ADC_CS_N), .dout(ADC_DOUT), .out(ADC_REG), .ready(ready), .ADC_REG_PREV(ADC_REG_PREV));
+	fromADC data4mADC(.mclk(clk), .ds(ADC_DoSth), .cs(ADC_CS_N), .dout(ADC_DOUT), .out(ADC_REG), .ready(ready));
 	
-	sendData send2vga(.mclk(clk), .*);
+	trackTrig trigSig(.mclk(clk), .ADC_REG(ADC_REG), .trig(trig_thousand), .cur_trig(cur_trig), .prev_trig(prev_trig), .rising(rising), .full(full));
+	
+	sendData send2vga(.mclk(clk), .testHex(testHex), .ready(ready), .cur_trig(cur_trig), .full(full), .valid(valid), .prev_trig(prev_trig));
 
 	bin2dec b2d(.bin_data(ADC_REG), .dec0(disp0), .dec1(disp1), .dec2(disp2), .dec3(disp3), .dec4(disp4), .dec5(disp5));
 	
-	hex7seg h0(.in(disp0), .out(HEX0));
-	hex7seg h1(.in(disp1), .out(HEX1));
+	hex7seg h0(.in(testHex), .out(HEX0));
+	hex7edge h1 (.in(rising), .out(HEX1));
 	hex7seg h2(.in(disp2), .out(HEX2));
 	hex7seg h3(.in(disp3), .out(HEX3));
 	hex7seg h4(.in(disp4), .out(HEX4));
@@ -315,23 +444,16 @@ endmodule
 
 module clockdiv(input logic clk, output logic en);
 
-   parameter clockDivisor = 4'd 4 ;
-   //register stores the value of clock cycles
-   logic [3:0] i = 4'd 0; 
+   logic [1:0] i = 2'b 00; 
 
    always_ff @( posedge clk )  
    begin
 
-     i <= i + 4'd 1;
-     //resetting the clock
-     if ( i >= (clockDivisor-1)) 
-     begin  
-      	i <= 4'd 0;
-     end
+     i <= i + 2'd 1;
 
    end
 
-   assign en = (i<clockDivisor/2)?1'b0:1'b1;
+   assign en = i[1];
 
 endmodule
 
@@ -450,30 +572,36 @@ module toADC (input logic mclk, input logic ds, input logic cs, output logic din
 endmodule
 
 //controls the D_out signal
-module fromADC (mclk, ds, cs, dout, ready, out, ADC_REG_PREV);
+module fromADC (mclk, ds, cs, dout, ready, out);
 
 	input logic mclk, ds, cs, dout; 
 	output logic [11:0] out;
-	output logic [11:0] ADC_REG_PREV;
+	//output logic [11:0] ADC_REG_PREV;
 	output logic ready;
 	logic [5:0] counter = 6'd 0;
 
 	logic [11:0] shiftreg = 12'd 0;
 
 	logic load_data = 1'd 1; //check this if we have issues displaying	
-	
+
 	always_ff @ ( posedge mclk )
 	begin
 
-		if (counter == 6'd 0)
-			ADC_REG_PREV[11:0] <= shiftreg[11:0];
-		if (!cs && ds && counter <= 6'd 11)
+		if (!cs && ds && counter < 6'd 1)
+		begin
+			//ADC_REG_PREV[11:0] <= shiftreg[11:0];
+			counter <= counter + 6'd 1;
+			ready <= 1'd 0;
+		end
+
+		else if (!cs && ds && counter >= 6'd 1 && counter <= 6'd 12)
+		//if (!cs && ds && counter <= 6'd 11)
 		begin
 			shiftreg = {shiftreg[10:0], dout};
 			counter <= counter + 6'd 1;
 			load_data <= 1'd 1;
 			ready <= 1'd 0;
-			ADC_REG_PREV[11:0] <= ADC_REG_PREV[11:0];
+			//ADC_REG_PREV[11:0] <= ADC_REG_PREV[11:0];
 		end
 
 		else if(cs && !ds && load_data)
@@ -481,32 +609,135 @@ module fromADC (mclk, ds, cs, dout, ready, out, ADC_REG_PREV);
 			//counter = 6'd 0; 
 			//out <= shiftreg;
 			out[11:0] <= shiftreg[11:0];
-			counter = 6'd 0;
+			//counter = 6'd 0;
 			load_data <= 1'd 0;
-			ready <= 1'd 1;
+			ready <= 1'd 0;
 		end
+
+		if(counter == 6'd 13)
+		begin
+			ready <= 1'd 1;
+			counter <= 6'd 0;
+		end
+		else
+			ready <= 1'd 0;
 		
 	end 
 
 endmodule 
+/*
+module trackTrig (input logic mclk, input logic[11:0] ADC_REG, input logic[11:0] trig, input logic full, output logic cur_trig, output logic prev_trig, input logic rising);
 
-module sendData (input logic mclk, input logic ready, input logic [11:0] trig, input logic full, output logic valid, input logic [11:0] ADC_REG, input logic [11:0] PREV_ADC_REG);
+	logic hold_prev = 1'b0;
+	logic hold1 = 1'b0;
 
 	always_ff @ ( posedge mclk )
 	begin
+	if(rising && full)
+	begin
 
-		if(full && (ADC_REG > trig) && (PREV_ADC_REG < ADC_REG) ) //changed from trig to ADC_REG
-			valid <= 1'd 1;
+		if(ADC_REG >= trig)
+		begin
+			cur_trig <= 1'b1;
+			hold_prev <= 1'b1;
+		end
+		else if (ADC_REG < trig)
+		begin
+			cur_trig <= 1'b0;
+			hold_prev <= 1'b0;
+		end
 		else
 		begin
-			if(ready && !full)
-				valid <= 1'd 1;
-			else if(ready && full)
-				valid <= 1'd 0;
-			else
-				valid <= 1'd 0;
+			cur_trig <= 1'b0;
+			hold_prev <= 1'b0;
 		end
+		
+		hold1 <= hold_prev;
+
+	end
+	 
+	end
+
+	assign prev_trig = hold1;
+
+
+endmodule*/
+
+module trackTrig (input logic mclk, input logic[11:0] ADC_REG, input logic[11:0] trig, input logic full, output logic cur_trig, output logic prev_trig, input logic rising);
+
+	logic hold_prev = 1'b0;
+	logic hold1 = 1'b0;
+
+	always_ff @ ( posedge mclk )
+	begin
+	if(rising && full)
+	begin
+		if(ADC_REG >= trig)
+		begin
+			cur_trig <= 1'b1;
+			hold_prev <= 1'b1;
+		end
+		else if( ADC_REG<trig)/* added these conditions*/
+		begin
+			cur_trig <= 1'b0;
+			hold_prev <= 1'b0;
+		end/* added these conditions*/
+		else
+		begin
+			cur_trig <= 1'b0;
+			hold_prev <= 1'b0;
+		end
+		
+		hold1 <= hold_prev;	
+	end
+	else if(!rising && full)
+	begin
+		if(ADC_REG <= trig)
+		begin
+			cur_trig <= 1'b1;
+			hold_prev <= 1'b1;
+		end
+		else
+		begin
+			cur_trig <= 1'b0;
+			hold_prev <= 1'b0;
+		end
+		
+		hold1 <= hold_prev;
+	end
+
+	end
 	
+	assign prev_trig = hold1;
+
+
+endmodule
+
+module sendData (input logic mclk, input logic ready, input logic cur_trig, input logic full, output logic valid, input logic prev_trig, output logic [3:0] testHex);
+	
+
+	initial 
+	begin
+	testHex=4'd0;
+	end
+
+	always_ff @ ( posedge mclk )
+	begin
+		//if previous trig was 0, curr trig was 1, vga_full was true and ready is true--> set valid to true
+		if(!prev_trig && cur_trig && full)
+			valid <=1'd1;
+		else if(prev_trig && !cur_trig && full) //added here
+		begin	valid <=1'd1;
+				testHex <= 4'd5;
+		end
+		else if(!full && ready && valid)
+			valid<= 1'd0;
+		else if(!full && ready && !valid)
+			valid<= 1'd1;
+		else
+			valid<=1'd0;
+	
+
 	end
 endmodule
 
@@ -534,6 +765,26 @@ module hex7seg (input logic [3:0] in, output logic [0:7] out);
 			4'he: pre_seg_dis = 7'b0000110;		
 			4'hf: pre_seg_dis = 7'b0001110;		
 			4'h0: pre_seg_dis = 7'b1000000;				
+		
+		endcase
+
+	end
+	
+	assign out = pre_seg_dis;
+
+endmodule
+
+module hex7edge (input logic in, output logic [0:7] out);
+
+	logic [6:0] pre_seg_dis;
+	always @ (*)
+	begin
+
+		case(in)
+		
+			4'h1: pre_seg_dis = 7'b1001110;		
+		
+			4'h0: pre_seg_dis = 7'b0001110;				
 		
 		endcase
 
@@ -726,6 +977,7 @@ mse[2] = 16'b1111111111111111;
 mse[3] = 16'b1111111111111111;
 mse[4] = 16'b0000001111000000;
 mse[5] = 16'b0000001111000000;
+
 mse[6] = 16'b0000001111000000;
 mse[7] = 16'b0000001111000000;
 mse[8] = 16'b0000001111000000;
@@ -749,16 +1001,16 @@ module R(input logic clk, output logic [15:0] shape_r, input logic [3:0] a_r);
 logic [15:0]     mse[15:0];
 
 initial begin
-mse[0] = 16'b1111111111111111;
-mse[1] = 16'b1111111111111111;
-mse[2] = 16'b1111000000001111;
-mse[3] = 16'b1111000000001111;
-mse[4] = 16'b1111000000001111;
-mse[5] = 16'b1111000000001111;
-mse[6] = 16'b1111000000001111;
-mse[7] = 16'b1111000000001111;
-mse[8] = 16'b1111111111111111;
-mse[9] = 16'b1111111111111111;
+mse[0] = 16'b0011111111111111;
+mse[1] = 16'b0011111111111111;
+mse[2] = 16'b0011110000001111;
+mse[3] = 16'b0011110000001111;
+mse[4] = 16'b0011110000001111;
+mse[5] = 16'b0011110000001111;
+mse[6] = 16'b0011110000001111;
+mse[7] = 16'b0011110000001111;
+mse[8] = 16'b0011111111111111;
+mse[9] = 16'b0011111111111111;
 mse[10] =16'b0000000111101111;
 mse[11] =16'b0000001111001111;
 mse[12] =16'b0000011110001111;
@@ -820,10 +1072,10 @@ mse[8] = 16'b1111000000000000;
 mse[9] = 16'b1111000000000000;
 mse[10] =16'b1111000000000000;
 mse[11] =16'b1111000000000000;
-mse[12] =16'b1111111111111111;
-mse[13] =16'b1111111111111111;
-mse[14] =16'b1111111111111111;
-mse[15] =16'b1111111111111111;
+mse[12] =16'b1111000000000000;
+mse[13] =16'b1111000000000000;
+mse[14] =16'b1111000000000000;
+mse[15] =16'b1111000000000000;
 end
 
 always_ff @(posedge clk) begin 
@@ -838,11 +1090,11 @@ module two(input logic clk, output logic [15:0] shape_two, input logic [3:0] a_t
 logic [15:0]     mse[15:0];
 
 initial begin
-mse[0] = 16'b1111111100000000;
-mse[1] = 16'b1111000111100000;
-mse[2] = 16'b1111000001111000;
-mse[3] = 16'b1111000000111100;
-mse[4] = 16'b1111000000011110;
+mse[0] = 16'b1111111111111111;
+mse[1] = 16'b1111000111111111;
+mse[2] = 16'b1111000001111111;
+mse[3] = 16'b1111000000111111;
+mse[4] = 16'b1111000000011111;
 mse[5] = 16'b1111000000001111;
 mse[6] = 16'b1111000000000000;
 mse[7] = 16'b1111111111111111;
@@ -894,31 +1146,34 @@ endmodule
 
 
 
+
 // 16 X 8 synchronous RAM with old data read-during-write behavior
 module memory(input logic        clk,
 	      input logic [9:0]  a,
-	      input logic [15:0]  din,
+	      input logic [8:0]  din,
 	      input logic 	 we,
 	      output logic [15:0] dout);
 
 //we have 1280 pixels, so 1280 digits coming in each of 16 bits
    
    logic [15:0] 			 mem [639:0];
-   integer j;
-   integer flag;
-   initial begin
 
-   for(j = 0; j < 639; j = j+1) 
+   //integer j;
+   //integer flag;
+   //initial begin
 
-   		mem[j] = 16'd180;
+   //for(j = 0; j < 639; j = j+1) 
+
+   		//mem[j] = 16'd180;
 	//end
 
-end
+//end
 
    always_ff @(posedge clk) begin
       if (we) mem[a] <= din;
       dout <= mem[a];
    end
-        
+      
 endmodule
+
 

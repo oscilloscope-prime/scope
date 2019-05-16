@@ -1,0 +1,62 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlib soc_system
+vmap soc_system soc_system
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/soc_system.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_reset_controller.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_reset_synchronizer.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_avalon_st_adapter.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_hps_0.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_hps_0_hps_io.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_mem_if_hhp_qseq_synth_top.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_altdqdqs.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_generic_ddio.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_acv_hard_io_pads.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_acv_ldc.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_acv_hard_memphy.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_acv_hard_addr_cmd_pads.v}
+vlog -vlog01compat -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0_clock_pair_generator.v}
+vlog -sv -work work +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system_top.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_irq_mapper.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_width_adapter.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_rsp_mux.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_rsp_demux.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_cmd_mux.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_cmd_demux.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_burst_adapter.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_router_002.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_mm_interconnect_0_router.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_slave_agent.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_axi_master_ni.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_merlin_slave_translator.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/vga_ball.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_mem_if_dll_cyclonev.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_mem_if_oct_cyclonev.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altera_mem_if_hard_memory_controller_top_cyclonev.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/altdq_dqs2_acv_connect_to_hard_phy_cyclonev.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_p0.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/hps_sdram_pll.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sv}
+vlog -sv -work soc_system +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/soc_system/synthesis/submodules/soc_system_hps_0_fpga_interfaces.sv}
+
+vlog -vlog01compat -work work +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/simulation/modelsim {/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/simulation/modelsim/tb14.v}
+
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -L soc_system -voptargs="+acc"  tb14
+
+add wave *
+view structure
+view signals
+run -all

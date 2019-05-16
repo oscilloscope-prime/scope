@@ -17,12 +17,28 @@
          type = "int";
       }
    }
+   element clk_0.clk_in
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+   }
    element hps_0
    {
       datum _sortIndex
       {
          value = "1";
          type = "int";
+      }
+   }
+   element soc_system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
       }
    }
    element soc_system

@@ -67,7 +67,8 @@ void print_coordinate_info() {
   printf("\n");
 }
 
-//Write the coordinates to the display 
+//Write the coordinates to thc: In function 'main':
+//mouse.c:166:11: error: 'mouse display 
 void write_coordinates(vga_ball_arg_t* c)
 {
 	vga_ball_arg_t vla;
@@ -92,6 +93,31 @@ int main()
   int modifierss = 0;
   struct usb_mouse_packet packet;
   int transferred;
+
+    //button_1 is horizontal_sweep
+  int pos_button_1_x = 500; 
+  int pos_button_1_y = 350;
+
+  //button_2 is trigger_voltage
+  int pos_button_2_x = 500; 
+  int pos_button_2_y = 425;
+
+  int inputx = 320;
+  int inputy = 240;
+  int inputclick = 0;
+
+  int x_distance = 50;
+  int y_distance = 75;
+  int x_width = 16;
+  int y_width = 16;
+
+    //save trigger_voltage and horizontal sweep value
+  int trigger_voltage = 2; // default 2, range(1.0 to 3.0)
+  int sweep_value = 2;   // default us 1, range is (1~100) 
+  int trigger_slope = 1;
+  //the logic is drop all data except every sweep_value sample.
+  char str[50] = "without mouse click";
+
  static const char filename[] = "/dev/vga_ball";
   // char keystate[12];
 
@@ -110,7 +136,8 @@ int main()
     libusb_interrupt_transfer(mouse, endpoint_address,
             (unsigned char *) &packet, sizeof(packet),
             &transferred, 0);
-    // printf("%d\n", flg1);
+   //c: In function 'main':
+//mouse.c:166:11: error: 'mous // printf("%d\n", flg1);
 
     if (transferred == sizeof(packet)) {
       if (packet.pos_x > 0x88) {
@@ -133,13 +160,44 @@ int main()
       else if (py > 479) { py = 479;}
       else {py = 240;}
 
+      inputx = px;
+      inputy = py;
+      inputclick = packet.modifiers;
       modifierss = packet.modifiers;
+
+      if (packet.modifiers == 1){
+//	printf("flag1");
+        if (pos_button_1_y<inputy && inputy<(pos_button_1_y + x_width)){
+//	  printf("flag2"); 
+          if ( pos_button_1_x<inputx && inputx<(pos_button_1_x + x_width) && trigger_voltage > 0){
+//	    printf("flag3");
+            trigger_voltage = trigger_voltage - 1; 
+            str[50] = "click add trigger_voltage";}
+          else if ( (pos_button_1_x + x_distance)<inputx && inputx<(pos_button_1_x + (x_distance+x_width)) && trigger_voltage < 3){
+            trigger_voltage = trigger_voltage + 1; 
+            str[50] = "click add trigger_voltage";}
+          // else {continue;}
+        }
+        else if ((pos_button_1_y+y_distance)<inputy && inputy<(pos_button_1_y+(y_distance+y_width))){ 
+          if ( pos_button_1_x<inputx && inputx<(pos_button_1_x + x_width)){
+            // sweep_value = sweep_value *2; str = "click button sweep_value x2";}
+            trigger_slope = 0; 
+            str[50] = "click button trigger_slope minus";}
+          else if ( (pos_button_1_x + x_distance)<inputx && 
+            inputx<(pos_button_1_x + (x_distance+x_width))){
+            // sweep_value = sweep_value /2; str = "click button sweep_value /2";}
+            trigger_slope = 1; 
+            str[50] = "click button trigger_slope pos";}
+          // else {continue;}
+        }
+        printf("trigger_voltage: %d, trigger_slope: %d, the button state: %s", trigger_voltage,trigger_slope,str);
+      }
 	//ADDING R and t 
-	vla.r =0;
-	vla.t = 0;
+	vla.r =trigger_slope;
+	vla.t = trigger_voltage;
       vla.x = px;
       vla.y = py;
-      printf("position of x, y are: %d %d; left click is %d\n",px,py,modifierss);
+      printf("  position of x, y are: %d %d; left click is %d\n",px,py,modifierss);
       write_coordinates(&vla);
       //usleep(400000);
       }

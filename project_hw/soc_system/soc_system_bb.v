@@ -1,6 +1,16 @@
 
 module soc_system (
+	adc_cs,
+	adc_sclk,
+	adc_din,
+	adc_dout,
 	clk_clk,
+	hex_h0,
+	hex_h2,
+	hex_h1,
+	hex_h3,
+	hex_h4,
+	hex_h5,
 	hps_hps_io_emac1_inst_TX_CLK,
 	hps_hps_io_emac1_inst_TXD0,
 	hps_hps_io_emac1_inst_TXD1,
@@ -74,19 +84,19 @@ module soc_system (
 	vga_hs,
 	vga_vs,
 	vga_blank_n,
-	vga_sync_n,
-	adc_cs,
-	adc_sclk,
-	adc_din,
-	adc_dout,
-	hex_h0,
-	hex_h2,
-	hex_h1,
-	hex_h3,
-	hex_h4,
-	hex_h5);	
+	vga_sync_n);	
 
+	output		adc_cs;
+	output		adc_sclk;
+	output		adc_din;
+	input		adc_dout;
 	input		clk_clk;
+	output	[6:0]	hex_h0;
+	output	[6:0]	hex_h2;
+	output	[6:0]	hex_h1;
+	output	[6:0]	hex_h3;
+	output	[6:0]	hex_h4;
+	output	[6:0]	hex_h5;
 	output		hps_hps_io_emac1_inst_TX_CLK;
 	output		hps_hps_io_emac1_inst_TXD0;
 	output		hps_hps_io_emac1_inst_TXD1;
@@ -161,14 +171,4 @@ module soc_system (
 	output		vga_vs;
 	output		vga_blank_n;
 	output		vga_sync_n;
-	output		adc_cs;
-	output		adc_sclk;
-	output		adc_din;
-	input		adc_dout;
-	output	[6:0]	hex_h0;
-	output	[6:0]	hex_h2;
-	output	[6:0]	hex_h1;
-	output	[6:0]	hex_h3;
-	output	[6:0]	hex_h4;
-	output	[6:0]	hex_h5;
 endmodule

@@ -1,5 +1,15 @@
 	soc_system u0 (
+		.adc_cs                       (<connected-to-adc_cs>),                       //      adc.cs
+		.adc_sclk                     (<connected-to-adc_sclk>),                     //         .sclk
+		.adc_din                      (<connected-to-adc_din>),                      //         .din
+		.adc_dout                     (<connected-to-adc_dout>),                     //         .dout
 		.clk_clk                      (<connected-to-clk_clk>),                      //      clk.clk
+		.hex_h0                       (<connected-to-hex_h0>),                       //      hex.h0
+		.hex_h2                       (<connected-to-hex_h2>),                       //         .h2
+		.hex_h1                       (<connected-to-hex_h1>),                       //         .h1
+		.hex_h3                       (<connected-to-hex_h3>),                       //         .h3
+		.hex_h4                       (<connected-to-hex_h4>),                       //         .h4
+		.hex_h5                       (<connected-to-hex_h5>),                       //         .h5
 		.hps_hps_io_emac1_inst_TX_CLK (<connected-to-hps_hps_io_emac1_inst_TX_CLK>), //      hps.hps_io_emac1_inst_TX_CLK
 		.hps_hps_io_emac1_inst_TXD0   (<connected-to-hps_hps_io_emac1_inst_TXD0>),   //         .hps_io_emac1_inst_TXD0
 		.hps_hps_io_emac1_inst_TXD1   (<connected-to-hps_hps_io_emac1_inst_TXD1>),   //         .hps_io_emac1_inst_TXD1
@@ -73,16 +83,6 @@
 		.vga_hs                       (<connected-to-vga_hs>),                       //         .hs
 		.vga_vs                       (<connected-to-vga_vs>),                       //         .vs
 		.vga_blank_n                  (<connected-to-vga_blank_n>),                  //         .blank_n
-		.vga_sync_n                   (<connected-to-vga_sync_n>),                   //         .sync_n
-		.adc_cs                       (<connected-to-adc_cs>),                       //      adc.cs
-		.adc_sclk                     (<connected-to-adc_sclk>),                     //         .sclk
-		.adc_din                      (<connected-to-adc_din>),                      //         .din
-		.adc_dout                     (<connected-to-adc_dout>),                     //         .dout
-		.hex_h0                       (<connected-to-hex_h0>),                       //      hex.h0
-		.hex_h2                       (<connected-to-hex_h2>),                       //         .h2
-		.hex_h1                       (<connected-to-hex_h1>),                       //         .h1
-		.hex_h3                       (<connected-to-hex_h3>),                       //         .h3
-		.hex_h4                       (<connected-to-hex_h4>),                       //         .h4
-		.hex_h5                       (<connected-to-hex_h5>)                        //         .h5
+		.vga_sync_n                   (<connected-to-vga_sync_n>)                    //         .sync_n
 	);
 

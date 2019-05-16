@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/simulation/modelsim
+vsoc_system_top
+Z1 !s110 1557787272
+!i10b 1
+!s100 U@SX3X<FmDGF7blKI@;_W0
+I<k`DDiaMPzbKPRZ869acb3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1557787210
+8soc_system.vo
+Fsoc_system.vo
+L0 31
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1557787271.000000
+!s107 soc_system.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|soc_system.vo|
+!i113 1
+Z4 o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+.
+Z5 tCvgOpt 0
+vtb13
+R1
+!i10b 1
+!s100 @7cgO19ilQSek==6dSzZ>3
+I:jcj3_VXlob<1h;oe89dC2
+R2
+R0
+w1556682396
+8/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim/tb13.v
+F/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim/tb13.v
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1557787272.000000
+!s107 /homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim/tb13.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim|/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim/tb13.v|
+!i113 1
+R4
+!s92 -vlog01compat -work work +incdir+/homes/user/stud/fall17/ibk2110/scope_mouse/project_hw/../../all_adc/adc/simulation/modelsim
+R5
